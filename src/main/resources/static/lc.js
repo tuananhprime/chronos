@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
             submitLCBtn.addEventListener('click', async () => {
                 const token = TokenStorage.get();
                 try {
-                    const response = await fetch('http://localhost:8080/api/lc/create', {
+                    const response = await fetch('/api/lc/create', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

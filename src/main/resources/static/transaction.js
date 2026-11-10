@@ -26,8 +26,10 @@ document.addEventListener('DOMContentLoaded', function() {
             try {
                 const token = localStorage.getItem("authToken");
 
-                if (!token) {
-                    throw new Error("User not logged in");
+                if (ChronosAccess.isGuest()) {
+                    data = ChronosAccess.transactions;
+                    renderTable(data);
+                    return;
                 }
 
                 const res = await fetch('/api/transactions/list', {
@@ -37,7 +39,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
 
                 if (res.status === 401 || res.status === 403) {
-                    throw new Error("Unauthorized");
+                    localStorage.removeItem('authToken');
+                    sessionStorage.removeItem('profileId');
+                    data = ChronosAccess.transactions;
+                    renderTable(data);
+                    return;
                 }
 
                 if (!res.ok) {
@@ -89,6 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <td class="status ${row.status}">${row.status}</td>
                     <td>${formatCurrency(row.amount, row.currency)}</td>
                     <td>${row.currency}</td>
+                    <td><button type="button" class="btn btn-secondary view-btn" data-id="${row.transactionId}">Chi tiết</button></td>
                 `;
                 tbody.appendChild(tr);
             });

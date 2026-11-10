@@ -313,8 +313,13 @@ async function fetchKPI() {
   console.log('fetchKPI called');
   const token = TokenStorage.get();
 
-  if (!token) {
-    window.location.replace('login.html');
+  if (ChronosAccess.isGuest()) {
+    const data = { pendingApprovals: 1, totalTransactions: 3, totalValueThisMonth: 84500 };
+    document.getElementById('kpi-pending').textContent = data.pendingApprovals;
+    document.getElementById('kpi-total').textContent = data.totalTransactions;
+    document.getElementById('kpi-value').textContent = '$84,500';
+    const recent = document.getElementById('recent-activities-body');
+    if (recent) recent.innerHTML = ChronosAccess.transactions.map(row => `<tr><td>${new Date(row.createdAt).toLocaleDateString()}</td><td>${row.transactionId}</td><td>${row.type}</td><td>${row.currency} ${row.amount.toLocaleString()}</td><td>${row.status}</td></tr>`).join('');
     return;
   }
 
@@ -330,8 +335,7 @@ async function fetchKPI() {
     if (res.status === 401) {
       TokenStorage.remove();
       sessionStorage.removeItem('profileId');
-      window.location.replace('login.html');
-      return;
+      return fetchKPI();
     }
     if (!res.ok) throw new Error('HTTP error ' + res.status);
     const data = await res.json();

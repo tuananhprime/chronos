@@ -177,3 +177,7 @@ html,body{height:100%; margin:0; font-family: -apple-system, BlinkMacSystemFont,
 
 /* small generic */
 a{color:inherit}
+
+.guest-notice { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; padding: 16px 20px; background: rgba(27,176,221,.1); border: 1px solid rgba(27,176,221,.35); border-radius: 12px; color: #b8d6e8; font-size: 14px; }
+.guest-notice strong { color: #e4f5ff; }
+.guest-notice a { color: #4bd0f5; font-weight: 600; white-space: nowrap; }

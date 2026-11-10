@@ -286,8 +286,8 @@ async function fetchKPI() {
   console.log('fetchKPI called');
   const token = TokenStorage.get();
 
-  if (!token) {
-    window.location.replace('login.html');
+  if (ChronosAccess.isGuest()) {
+    ['kpi-compliance-wait', 'kpi-approval-wait', 'kpi-ops-wait'].forEach((id, i) => { document.getElementById(id).textContent = [3, 2, 1][i]; });
     return;
   }
 
@@ -303,8 +303,7 @@ async function fetchKPI() {
     if (res.status === 401) {
       TokenStorage.remove();
       sessionStorage.removeItem('profileId');
-      window.location.replace('login.html');
-      return;
+      return fetchKPI();
     }
     if (!res.ok) throw new Error('HTTP error ' + res.status);
     const data = await res.json();

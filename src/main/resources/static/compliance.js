@@ -15,9 +15,14 @@ function formatDate(isoDate) {
 
 async function fetchComplianceTasks() {
     try {
-        const res = await fetch("/api/bank/compliance");
-        if (!res.ok) throw new Error("HTTP Error " + res.status);
-        const data = await res.json();
+        let data;
+        if (ChronosAccess.isGuest()) {
+            data = ChronosAccess.transactions.map(row => ({...row, customer: 'Doanh nghiệp minh họa', submittedDate: row.createdAt}));
+        } else {
+            const res = await fetch('/api/bank/compliance');
+            if (!res.ok) throw new Error('HTTP Error ' + res.status);
+            data = await res.json();
+        }
 
         const tbody = document.getElementById("compliance-tbody");
         tbody.innerHTML = "";

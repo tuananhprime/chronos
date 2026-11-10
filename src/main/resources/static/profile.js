@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const pf = document.getElementById('profile-form');
         if (!pf) return;
 
+        if (ChronosAccess.isGuest()) return;
+
         // Lấy profileId từ login
         const profileId = sessionStorage.getItem('profileId');
         if (!profileId) {

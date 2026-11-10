@@ -29,3 +29,11 @@ trước khi chạy mà không dùng profile `local`.
 Mã nguồn được tải từ thư mục Google Drive CHRONOS do người dùng cung cấp;
 có bổ sung cấu hình local, Maven Wrapper và hướng dẫn chạy trên Mac.
 Xem [README-LOCAL.md](README-LOCAL.md) để biết các thay đổi và phạm vi kiểm tra.
+
+## Chế độ khách
+
+Mở `/dashboard.html` để khám phá giao diện mà không cần đăng nhập.
+Dashboard và danh sách giao dịch của khách dùng dữ liệu minh họa, có nhãn rõ ràng.
+Khách có thể lọc danh sách và xem biểu mẫu T/T, L/C, Profile.
+Gửi yêu cầu, lưu thay đổi, tải tài liệu và mở chi tiết yêu cầu đăng nhập;
+sau khi đăng nhập sẽ quay lại trang đang xem. API dữ liệu yêu cầu JWT hợp lệ.

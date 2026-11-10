@@ -90,9 +90,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // --- CHỈNH SỬA PHẦN REDIRECT THEO ROLE ---
         if (role === 'bank_user') {
-          window.location.href = 'bankdashboard.html';
+          window.location.href = ChronosAccess.returnAfterLogin('bankdashboard.html');
         } else {
-          window.location.href = 'dashboard.html';
+          window.location.href = ChronosAccess.returnAfterLogin('dashboard.html');
         }
 
       } else {
