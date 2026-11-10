@@ -312,10 +312,9 @@ function logout() {
 async function fetchKPI() {
   console.log('fetchKPI called');
   const token = TokenStorage.get();
-  console.log('Token:', token);
 
   if (!token) {
-    showNotification('Chưa có token đăng nhập', 'error');
+    window.location.replace('login.html');
     return;
   }
 
@@ -328,6 +327,12 @@ async function fetchKPI() {
     });
     console.log('Fetch response:', res);
 
+    if (res.status === 401) {
+      TokenStorage.remove();
+      sessionStorage.removeItem('profileId');
+      window.location.replace('login.html');
+      return;
+    }
     if (!res.ok) throw new Error('HTTP error ' + res.status);
     const data = await res.json();
     console.log('Data:', data);
