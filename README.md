@@ -34,6 +34,7 @@ Xem [README-LOCAL.md](README-LOCAL.md) để biết các thay đổi và phạm 
 
 Mở `/dashboard.html` để khám phá giao diện mà không cần đăng nhập.
 Dashboard và danh sách giao dịch của khách dùng dữ liệu minh họa, có nhãn rõ ràng.
-Khách có thể lọc danh sách và xem biểu mẫu T/T, L/C, Profile.
+Khách chỉ xem danh sách và biểu mẫu T/T, L/C, Profile; ô nhập, bộ lọc và nút nghiệp vụ bị khóa.
 Gửi yêu cầu, lưu thay đổi, tải tài liệu và mở chi tiết yêu cầu đăng nhập;
 sau khi đăng nhập sẽ quay lại trang đang xem. API dữ liệu yêu cầu JWT hợp lệ.
+Nút khám phá giao diện trên trang đăng nhập xóa phiên cũ trước khi vào chế độ khách.

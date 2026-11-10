@@ -1,4 +1,15 @@
 (() => {
+  const clearSession = () => {
+    localStorage.removeItem('authToken');
+    ['profileId', 'selectedTransaction', 'ttReviewData', 'lcReviewData'].forEach(key => sessionStorage.removeItem(key));
+    localStorage.removeItem('selectedTransaction');
+  };
+  const entryUrl = new URL(location.href);
+  if (entryUrl.searchParams.get('guest') === '1') {
+    clearSession();
+    entryUrl.searchParams.delete('guest');
+    history.replaceState(null, '', entryUrl.pathname + entryUrl.search + entryUrl.hash);
+  }
   const sampleTransactions = [
     { transactionId: 1001, type: 'TT', status: 'Pending', amount: 12500, currency: 'USD', createdAt: new Date().toISOString() },
     { transactionId: 1002, type: 'LC', status: 'Completed', amount: 68000, currency: 'USD', createdAt: new Date().toISOString() },
@@ -65,6 +76,8 @@
     login();
   };
   document.addEventListener('click', event => {
+    const logoutLink = event.target.closest('.sidebar-logout a');
+    if (logoutLink) clearSession();
     if (hasSession()) return;
     const target = event.target.closest('a, button, input[type="file"]');
     if (!target) return;
@@ -75,7 +88,7 @@
     }
     if (target.tagName === 'A') {
       const url = new URL(target.href, location.origin);
-      if (url.origin === location.origin && detailPages.has(url.pathname.split('/').pop())) {
+      if (url.origin === location.origin && (detailPages.has(url.pathname.split('/').pop()) || ['tt.html', 'lc.html'].includes(url.pathname.split('/').pop()))) {
         event.preventDefault();
         event.stopImmediatePropagation();
         login(url.pathname + url.search);
@@ -90,8 +103,27 @@
     if (!hasSession() && main) {
       const notice = document.createElement('div');
       notice.className = 'guest-notice';
-      notice.innerHTML = '<span><strong>Chế độ khách · Dữ liệu minh họa</strong><br>Bạn có thể khám phá giao diện. Đăng nhập khi tạo yêu cầu hoặc xem chi tiết.</span><a href="/login.html">Đăng nhập</a>';
+      notice.innerHTML = '<span><strong>Chế độ khách · Dữ liệu minh họa</strong><br>Chỉ xem giao diện. Đăng nhập để nhập liệu, tạo yêu cầu hoặc sử dụng chức năng.</span><a href="/login.html">Đăng nhập</a>';
       main.prepend(notice);
+      // Lock both initial controls and buttons rendered asynchronously by page scripts.
+      const lockControls = () => {
+        if (hasSession()) return;
+        main.querySelectorAll('form').forEach(form => { form.inert = true; });
+        main.querySelectorAll('input, select, textarea, button').forEach(control => {
+          if (control.matches('.tab-btn, #hamburger-btn')) return;
+          control.disabled = true;
+          control.title = 'Đăng nhập để sử dụng chức năng này';
+        });
+        main.querySelectorAll('[contenteditable]').forEach(control => { control.contentEditable = 'false'; });
+      };
+      lockControls();
+      new MutationObserver(lockControls).observe(main, { childList: true, subtree: true });
+      ['drop', 'dragover', 'change', 'input'].forEach(type => {
+        main.addEventListener(type, event => {
+          if (!hasSession()) { event.preventDefault(); event.stopImmediatePropagation(); }
+        }, true);
+      });
+
       document.querySelectorAll('.sidebar-logout a').forEach(link => {
         link.href = '/login.html';
         const label = link.querySelector('span');
