@@ -18,6 +18,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class TransactionViewService {
+    @org.springframework.beans.factory.annotation.Autowired
+    private AuthService authService;
 
     @Autowired
     private TransactionRepository transactionRepository;
@@ -57,7 +59,7 @@ public class TransactionViewService {
                 );
 
         // 3️⃣ business_id == profileId
-        Integer profileId = businessProfile.getBusinessId();
+        Integer profileId = authService.getProfileIdByUsername(username);
 
         // 4️⃣ profileId → Transactions
         List<Transaction> txList =

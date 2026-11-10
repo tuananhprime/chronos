@@ -3,58 +3,38 @@ package com.mycompany.chronos.controller;
 import com.mycompany.chronos.dto.LoginRequest;
 import com.mycompany.chronos.dto.RegisterRequest;
 import com.mycompany.chronos.service.AuthService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
-
-    private final AuthService authService;
-
-    public AuthController(AuthService authService) {
-        this.authService = authService;
-    }
+    private final AuthService auth;
+    public AuthController(AuthService auth) { this.auth = auth; }
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterRequest req) {
         try {
-            String token = authService.register(req);
-            // Nếu authService trả ra chuỗi lỗi thì gửi lỗi
-            if (token.equals("Tên đăng nhập đã tồn tại, vui lòng chọn tên khác")) {
-                return ResponseEntity.badRequest().body(Map.of("error", token));
-            }
-            // Trả về JSON chứa token
-            return ResponseEntity.ok(Map.of("token", token));
-        } catch (Exception e) {
-            return ResponseEntity.internalServerError()
-                    .body(Map.of("error", e.getMessage()));
+            return ResponseEntity.ok(Map.of("token", auth.register(req)));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        } catch (DataIntegrityViolationException e) {
+            return ResponseEntity.status(409).body(Map.of("error", "Tên đăng nhập hoặc email đã được sử dụng."));
         }
     }
 
     @PostMapping("/login")
-public ResponseEntity<?> login(@RequestBody LoginRequest req) {
-    try {
-        // authService.login có thể trả về token
-        String token = authService.login(req);
-
+    public ResponseEntity<?> login(@RequestBody LoginRequest req) {
+        String token = auth.login(req);
         if (token.equals("Tên đăng nhập hoặc mật khẩu không đúng!")) {
             return ResponseEntity.status(401).body(Map.of("error", token));
         }
-
-        // Giả sử authService có thể lấy profileId dựa vào username
-        Integer profileId = authService.getProfileIdByUsername(req.getUsername());
-
-        // Trả về token + profileId
-        return ResponseEntity.ok(Map.of(
-            "token", token,
-            "profileId", profileId
-        ));
-    } catch (Exception e) {
-        return ResponseEntity.internalServerError()
-                .body(Map.of("error", e.getMessage()));
+        Integer profileId = auth.getProfileIdByUsername(req.getUsername());
+        var result = new java.util.HashMap<String, Object>();
+        result.put("token", token);
+        if (profileId != null) result.put("profileId", profileId);
+        return ResponseEntity.ok(result);
     }
-}
 }

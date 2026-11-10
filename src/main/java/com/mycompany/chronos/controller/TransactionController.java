@@ -27,7 +27,7 @@ public class TransactionController {
             @RequestHeader("Authorization") String authHeader
     ) {
         Transaction tx = transactionService.createTransaction(request, authHeader);
-        return ResponseEntity.ok(tx);
+        return ResponseEntity.ok(java.util.Map.of("transactionId", tx.getTransactionId(), "status", tx.getStatus()));
     }
 
     // ✅ CHỈ LẤY TRANSACTION CỦA USER ĐANG ĐĂNG NHẬP

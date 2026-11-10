@@ -30,20 +30,29 @@ Mã nguồn được tải từ thư mục Google Drive CHRONOS do người dùn
 có bổ sung cấu hình local, Maven Wrapper và hướng dẫn chạy trên Mac.
 Xem [README-LOCAL.md](README-LOCAL.md) để biết các thay đổi và phạm vi kiểm tra.
 
-## Chế độ khách
+## Chế độ khách và tài khoản
 
-Mở `/dashboard.html` để khám phá giao diện mà không cần đăng nhập.
-Dashboard và danh sách giao dịch của khách dùng dữ liệu minh họa, có nhãn rõ ràng.
-Khách chỉ xem danh sách và biểu mẫu T/T, L/C, Profile; ô nhập, bộ lọc và nút nghiệp vụ bị khóa.
-Gửi yêu cầu, lưu thay đổi, tải tài liệu và mở chi tiết yêu cầu đăng nhập;
-sau khi đăng nhập sẽ quay lại trang đang xem. API dữ liệu yêu cầu JWT hợp lệ.
-Nút khám phá giao diện trên trang đăng nhập xóa phiên cũ trước khi vào chế độ khách.
+Khách có thể xem giao diện, chuyển trang và tab. Ô nhập, bộ lọc và nút nghiệp vụ
+bị khóa; nút tạo yêu cầu dẫn tới đăng nhập. Trang đăng nhập và đăng ký luôn
+cho phép nhập liệu. Sau khi đăng nhập, hệ thống mở lại trang đang xem.
+Không có khung chú thích về chế độ khách trên giao diện.
 
+## Vercel và database online
 
-## Vercel: chỉ xem giao diện
+Vercel chạy Spring Boot bằng `Dockerfile.vercel`, profile `production`.
+Neon PostgreSQL lưu tài khoản và dữ liệu lâu dài. Các biến sau được quản lý
+trong Vercel, không đưa vào Git:
 
-Import repository với Root Directory là thư mục gốc. `vercel.json` chạy
-`node scripts/build-preview.mjs` và publish `dist/`.
-Bản Vercel chỉ chứa HTML/CSS/JavaScript và dữ liệu minh họa, không chạy
-Spring Boot hay database. Đăng nhập, đăng ký và nghiệp vụ bị khóa.
-Cờ preview được tạo riêng khi build; chạy local vẫn dùng backend bình thường.
+- `PGHOST`, `PGDATABASE`, `PGUSER`, `PGPASSWORD`: từ tích hợp Neon.
+- `CHRONOS_JWT_SECRET`: khóa Base64 ngẫu nhiên riêng cho môi trường production.
+
+Hibernate tạo/cập nhật schema `dbo` từ entity. Database production là database
+mới, không nhập tài khoản hoặc mật khẩu mẫu từ database local.
+Mật khẩu mới được băm bằng BCrypt. Đăng ký công khai chỉ tạo tài khoản khách
+hàng; tài khoản ngân hàng cần được quản trị viên cấp riêng.
+API dữ liệu yêu cầu JWT hợp lệ, tài khoản chỉ đọc/sửa được hồ sơ của mình.
+Cấu hình H2 local và SQL Server gốc vẫn được giữ theo profile.
+
+Dùng `./mvnw -DskipTests package spring-boot:repackage` để tạo JAR chạy được.
+Đã kiểm tra đăng ký/đăng nhập qua trình duyệt với PostgreSQL, truy cập dashboard,
+trùng tài khoản, sai mật khẩu, giới hạn quyền ngân hàng và quyền hồ sơ.

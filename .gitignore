@@ -6,3 +6,5 @@ apache-maven-*/
 
 dist/
 .vercel/
+.vercel
+.env*

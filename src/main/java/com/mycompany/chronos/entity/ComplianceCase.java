@@ -15,7 +15,7 @@ public class ComplianceCase {
     @Column(name = "relatedTransactionID", nullable = false, length = 50)
     private String relatedTransactionID; 
 
-    @Column(name = "description", columnDefinition = "NVARCHAR(MAX)")
+    @Column(name = "description", length = 10000)
     private String description; 
 
     @Column(name = "status", nullable = false, length = 50)

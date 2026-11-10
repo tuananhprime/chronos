@@ -11,9 +11,11 @@ public class BankAuthService {
 
     private final UserRepository userRepository;
     private final JwtUtil jwtTokenUtil;
+    private final AuthService authService;
 
-    public BankAuthService(UserRepository userRepository, JwtUtil jwtTokenUtil) {
+    public BankAuthService(UserRepository userRepository, JwtUtil jwtTokenUtil, AuthService authService) {
         this.userRepository = userRepository;
+        this.authService = authService;
         this.jwtTokenUtil = jwtTokenUtil;
     }
 
@@ -30,7 +32,7 @@ public class BankAuthService {
         }
 
         // So sánh mật khẩu thường (không mã hoá)
-        if (!req.getPassword().equals(user.getHashedPassword())) {
+        if (!authService.matchesPassword(user, req.getPassword())) {
             return "Tên đăng nhập hoặc mật khẩu không đúng!";
         }
 

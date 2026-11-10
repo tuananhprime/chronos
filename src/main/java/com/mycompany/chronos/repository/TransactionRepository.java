@@ -10,15 +10,15 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, Integer> {
 
-    @Query("SELECT COUNT(t) FROM Transaction t WHERE t.profile.profileId = :profileId AND t.status = 'pending'")
+    @Query("SELECT COUNT(t) FROM Transaction t WHERE t.profile.profileId = :profileId AND UPPER(t.status) = 'PENDING'")
     long countPendingApprovals(@Param("profileId") Integer profileId);
 
     @Query("""
         SELECT COALESCE(SUM(t.amount), 0)
         FROM Transaction t
         WHERE t.profile.profileId = :profileId
-          AND FUNCTION('MONTH', t.createdAt) = FUNCTION('MONTH', CURRENT_DATE)
-          AND FUNCTION('YEAR', t.createdAt) = FUNCTION('YEAR', CURRENT_DATE)
+          AND MONTH(t.createdAt) = MONTH(CURRENT_DATE)
+          AND YEAR(t.createdAt) = YEAR(CURRENT_DATE)
     """)
     double sumTotalValueThisMonth(@Param("profileId") Integer profileId);
 

@@ -11,6 +11,8 @@ import java.util.Optional;
 @Repository
 public interface ProfileServiceRepository extends JpaRepository<Profile, Integer> {
 
+    boolean existsByProfileIdAndUser_UserId(Integer profileId, Integer userId);
+
     Optional<Profile> findByTaxCodeAndCompanyName(String taxCode, String companyName);
 
     // Lấy profile theo user_id (dùng Integer vì user.userId là Integer)

@@ -68,7 +68,6 @@ document.addEventListener('DOMContentLoaded', function() {
       });
 
       const result = await response.json();
-      console.log('Login response:', result);
 
       if (!response.ok) {
         showLoginError(result.error || 'Sai tên đăng nhập hoặc mật khẩu.');

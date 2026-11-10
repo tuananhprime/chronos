@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     else if (!/^[\w.%+-]+@[\w.-]+\.[A-Za-z]{2,}$/.test(data.email)) showError("emailError", "Invalid email.");
     if (!data.username) showError("usernameError", "Username is required.");
     if (!data.password) showError("passwordError", "Password is required.");
-    else if (data.password.length < 6) showError("passwordError", "Password must be at least 6 characters.");
+    else if (data.password.length < 8) showError("passwordError", "Password must be at least 8 characters.");
     if (!data.businessName) showError("businessError", "Business name is required.");
 
     if (!isValid) return;

@@ -49,8 +49,7 @@ public class DashboardService {
                 .orElseThrow(() -> new RuntimeException("Business profile not found"));
 
         // 4️⃣ Tìm ProfileService tương ứng (qua tax_id hoặc business_name)
-        Profile profileService = profileServiceRepository
-                .findByTaxCodeAndCompanyName(businessProfile.getTaxId(), businessProfile.getBusinessName())
+        Profile profileService = profileServiceRepository.findByUserId(user.getUserId())
                 .orElseThrow(() -> new RuntimeException("ProfileService not found"));
 
         Integer profileId = profileService.getProfileId();

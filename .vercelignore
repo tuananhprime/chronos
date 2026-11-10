@@ -6,3 +6,5 @@ target
 apache-maven-*
 dist
 *.log
+
+.env*

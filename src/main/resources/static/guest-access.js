@@ -4,8 +4,6 @@
     ['profileId', 'selectedTransaction', 'ttReviewData', 'lcReviewData'].forEach(key => sessionStorage.removeItem(key));
     localStorage.removeItem('selectedTransaction');
   };
-  const previewOnly = window.CHRONOS_PREVIEW_ONLY === true;
-  if (previewOnly) clearSession();
   const entryUrl = new URL(location.href);
   if (entryUrl.searchParams.get('guest') === '1') {
     clearSession();
@@ -18,7 +16,6 @@
     { transactionId: 1003, type: 'TT', status: 'Rejected', amount: 4000, currency: 'USD', createdAt: new Date().toISOString() }
   ];
   const hasSession = () => {
-    if (previewOnly) return false;
     const token = localStorage.getItem('authToken');
     if (!token) return false;
     try {
@@ -102,15 +99,8 @@
     if (!hasSession() && event.target.matches(protectedForms)) stopForLogin(event);
   }, true);
   document.addEventListener('DOMContentLoaded', () => {
-    const main = document.querySelector('.main-content') || (previewOnly ? document.querySelector('main') : null);
+    const main = document.querySelector('.main-content');
     if (!hasSession() && main) {
-      const notice = document.createElement('div');
-      notice.className = 'guest-notice';
-      notice.innerHTML = '<span><strong>Chế độ khách · Dữ liệu minh họa</strong><br>Chỉ xem giao diện. Đăng nhập để nhập liệu, tạo yêu cầu hoặc sử dụng chức năng.</span><a href="/login.html">Đăng nhập</a>';
-      if (previewOnly) {
-        notice.innerHTML = '<span><strong>CHRONOS · Bản xem giao diện</strong><br>Chỉ xem dữ liệu minh họa. Đăng nhập và thao tác nghiệp vụ được tắt trên bản này.</span><a href="/dashboard.html">Dashboard</a>';
-      }
-      main.prepend(notice);
       // Lock both initial controls and buttons rendered asynchronously by page scripts.
       const lockControls = () => {
         if (hasSession()) return;
