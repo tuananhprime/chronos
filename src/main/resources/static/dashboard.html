@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHRONOS - Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="theme.css">
+    <script src="https://kit.fontawesome.com/4383773ea8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="overlay" id="overlay"></div>
+
+    <div class="page-bg" aria-hidden="true">
+        <img src="images/background.png" alt="background" class="bg-image">
+    </div>
+
+    <div class="dashboard-container">
+       
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <img src="images/logo_icon.png" alt="Logo Icon">
+                <span class="brand-name">CHRONOS</span>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="dashboard.html">
+                            <i class="fas fa-home"></i> <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="transaction.html">
+                            <i class="fas fa-exchange-alt"></i> <span>Transactions</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="document.html">
+                            <i class="fas fa-folder"></i> <span>Documents</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i> <span>Profile</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-logout">
+                <a href="login.html">
+                    <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <h1>Welcome back</h1>
+            </header>
+
+            <section class="kpi-cards">
+                <div class="kpi-card">
+                    <div>
+                        <span class="kpi-title">Pending Approvals</span>
+                        <span class="kpi-value" id="kpi-pending"></span>
+                    </div>
+                    <i class="fas fa-hourglass-half kpi-icon"></i>
+                </div>
+                <div class="kpi-card">
+                    <div>
+                        <span class="kpi-title">Total Value this Month</span>
+                        <span class="kpi-value" id="kpi-value"></span>
+                    </div>
+                    <i class="fas fa-dollar-sign kpi-icon"></i>
+                </div>
+                <div class="kpi-card">
+                    <div>
+                        <span class="kpi-title">Total Transactions</span>
+                        <span class="kpi-value" id="kpi-total"></span>
+                    </div>
+                    <i class="fas fa-list-alt kpi-icon"></i>
+                </div>
+            </section>
+
+            <section class="quick-actions">
+                <h2>Quick Actions</h2>
+                <div class="action-buttons">
+                    <a href="tt.html" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> + Create T/T Order
+                    </a>
+                    <a href="lc.html" class="btn btn-secondary">
+                        <i class="fas fa-file-invoice-dollar"></i> + Create L/C
+                    </a>
+                </div>
+            </section>
+
+            <section class="recent-activities">
+                <h2>Recent Activities</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Transaction ID</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recent-activities-body">
+                        <!-- JS sẽ append dữ liệu từ API SQL ở đây -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <script src="dashboard.js" defer></script>
+</body>
+</html>

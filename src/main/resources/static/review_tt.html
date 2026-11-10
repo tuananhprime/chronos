@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHRONOS - Review T/T</title>
+   
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://kit.fontawesome.com/4383773ea8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="overlay" id="overlay"></div>
+
+
+    <div class="page-bg" aria-hidden="true">
+        <img src="images/background.png" alt="background" class="bg-image">
+    </div>
+
+
+    <div class="dashboard-container">
+       
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <img src="images/logo_icon.png" alt="Logo Icon">
+                <span class="brand-name">CHRONOS</span>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="dashboard.html">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="transaction.html">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span>Transactions</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="document.html">
+                            <i class="fas fa-folder"></i>
+                            <span>Documents</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-logout">
+                <a href="login.html">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+
+        <main class="main-content">
+            <header class="main-header">
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <h1>Review Your T/T Order</h1>
+            </header>
+
+
+            <div class="form-card" id="tt-review-panel">
+               
+                <section class="form-section">
+                    <h2>Beneficiary Details</h2>
+                    <div class="review-list">
+                        <div class="review-row">
+                            <span class="review-label">Beneficiary Name</span>
+                            <span class="review-value" id="review-beneficiary-name">...</span>
+                        </div>
+                        <div class="review-row">
+                            <span class="review-label">Country</span>
+                            <span class="review-value" id="review-country">...</span>
+                        </div>
+                        <div class="review-row">
+                            <span class="review-label">Address</span>
+                            <span class="review-value" id="review-address">...</span>
+                        </div>
+                        <div class="review-row">
+                            <span class="review-label">Account Number / IBAN</span>
+                            <span class="review-value" id="review-account-number">...</span>
+                        </div>
+                        <div class="review-row">
+                            <span class="review-label">SWIFT/BIC Code</span>
+                            <span class="review-value" id="review-swift-code">...</span>
+                        </div>
+                    </div>
+                </section>
+
+
+                <section class="form-section">
+                    <h2>Transaction Details</h2>
+                    <div class="review-list">
+                        <div class="review-row">
+                            <span class="review-label">Amount</span>
+                            <span class="review-value" id="review-amount">...</span>
+                        </div>
+                        <div class="review-row">
+                            <span class="review-label">Currency</span>
+                            <span class="review-value" id="review-currency">...</span>
+                        </div>
+                        <div class="review-row">
+                            <span class="review-label">Fee Responsibility</span>
+                            <span class="review-value" id="review-fee">...</span>
+                        </div>
+                        <div class="review-row">
+                            <span class="review-label">Purpose of Transfer</span>
+                            <span class="review-value" id="review-purpose">...</span>
+                        </div>
+                         <div class="review-row">
+                            <span class="review-label">Description/Notes</span>
+                            <span class="review-value" id="review-description">...</span>
+                        </div>
+                    </div>
+                </section>
+
+
+                <section class="form-section">
+                    <h2>Supporting Documents</h2>
+                    <div class="document-list" id="review-documents">
+                        </div>
+                </section>
+
+
+                <div class="form-actions review-actions">
+                    <div class="actions-left">
+                        <button class="btn btn-secondary" id="edit-btn">Edit</button>
+                        <button class="btn btn-secondary" id="cancel-btn">Cancel</button>
+                    </div>
+                    <div class="actions-right">
+                        <button class="btn btn-primary" id="submit-order-btn">Submit Order<i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+               
+            </div> </main>
+    </div>
+   
+    <script src="dashboard.js" defer></script>
+    <script src="tt.js" defer></script>
+</body>
+</html>
+

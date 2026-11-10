@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHRONOS - Approval Review</title>
+   
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://kit.fontawesome.com/4383773ea8.js" crossorigin="anonymous"></script>
+   
+    <style>
+        .detail-layout {
+            display: flex;
+            gap: 30px;
+        }
+        .detail-main { flex: 3; }
+        .detail-sidebar {
+            flex: 1.5;
+            position: sticky;
+            top: 40px;
+        }
+        .screening-result { padding: 16px; border-radius: 10px; margin-bottom: 20px; }
+        .screening-result.low-risk { background-color: rgba(40, 167, 69, 0.15); border: 1px solid rgba(40, 167, 69, 0.4); }
+        .screening-result .result-title { font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .screening-result.low-risk .result-title { color: #28a745; }
+        .screening-result .result-body { font-size: 14px; opacity: 0.9; margin-top: 8px; }
+        .action-buttons-vertical { display: flex; flex-direction: column; gap: 12px; }
+        .btn-danger { background-color: rgba(220, 53, 69, 0.8); color: #fff; }
+        .btn-danger:hover { background-color: rgba(220, 53, 69, 1); }
+    </style>
+</head>
+<body>
+    <div class="overlay" id="overlay"></div>
+    <div class="page-bg" aria-hidden="true">
+        <img src="images/background.png" alt="background" class="bg-image">
+    </div>
+
+
+    <div class="dashboard-container">
+       
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <img src="images/logo_icon.png" alt="Logo Icon">
+                <span class="brand-name">CHRONOS</span>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="bankdashboard.html">
+                            <i class="fas fa-home"></i> <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="compliance.html">
+                             <i class="fas fa-shield-alt"></i> <span>Compliance Tasks</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="approval.html">
+                            <i class="fas fa-check-circle"></i> <span>Approval Tasks</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="bankprocessing.html">
+                             <i class="fas fa-cogs"></i> <span>Processing Tasks</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="bankalltransactions.html">
+                             <i class="fas fa-list"></i> <span>All Transactions</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-logout">
+                <a href="login.html">
+                    <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+
+        <main class="main-content">
+            <header class="main-header">
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <div>
+                    <h1>Approval Review: #TT-89012</h1>
+                    <a href="approval.html" style="color: var(--accent, #1fb4e8); text-decoration: none; font-weight: 500;">
+                        <i class="fas fa-arrow-left"></i> Back to Approval Queue
+                    </a>
+                </div>
+            </header>
+
+
+            <div class="detail-layout">
+
+
+                <div class="detail-main">
+                    <div class="form-card">
+                        <section class="form-section">
+                            <h2>Transaction Overview</h2>
+                            <div class="review-list">
+                                <div class="review-row">
+                                    <span class="review-label">Transaction ID</span>
+                                    <span class="review-value">#TT-89012</span>
+                                </div>
+                                <div class="review-row">
+                                    <span class="review-label">Customer (Applicant)</span>
+                                    <span class="review-value">Doe Enterprises (Importer A)</span>
+                                </div>
+                                <div class="review-row">
+                                    <span class="review-label">Amount</span>
+                                    <span class="review-value" style="font-size: 1.1em; font-weight: 700; color: var(--accent, #1fb4e8);">$104,000.00 USD</span>
+                                </div>
+                                <div class="review-row">
+                                    <span class="review-label">Current Status</span>
+                                    <span class="review-value"><span class="status-tag status-pending">Pending Approval</span></span>
+                                </div>
+                            </div>
+                        </section>
+                       
+                        <section class="form-section">
+                            <h2>Beneficiary Details</h2>
+                            <div class="review-list">
+                                <div class="review-row">
+                                    <span class="review-label">Beneficiary Name</span>
+                                    <span class="review-value">Singapore Electronics Ltd.</span>
+                                </div>
+                                <div class="review-row">
+                                    <span class="review-label">Country</span>
+                                    <span class="review-value">Singapore</span>
+                                </div>
+                                <div class="review-row">
+                                    <span class="review-label">SWIFT/BIC Code</span>
+                                    <span class="review-value">DBSSSGSG</span>
+                                </div>
+                            </div>
+                        </section>
+
+
+                        <section class="form-section">
+                            <h2>Review History (Traces)</h2>
+                            <div class="review-list">
+                                <div class="review-row">
+                                    <span class="review-label">Screening</span>
+                                    <span class="review-value">Low Risk (Passed)</span>
+                                </div>
+                                <div class="review-row">
+                                    <span class="review-label">Compliance</span>
+                                    <span class="review-value">Approved by compliance_user_A (26/10/2025)</span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+
+                <div class="detail-sidebar">
+                    <div class="form-card" id="approval-action-card"> <section class="form-section">
+                            <h2>Approval Action (BankUser)</h2>
+                            <p style="font-size: 14px; opacity: 0.8; margin-bottom: 15px;">
+                                Review the transaction details and compliance check. Approve to send to Processing (Ops) or Reject.
+                            </p>
+                            <div class="form-group">
+                                <label for="approval-notes">Internal Notes / Reason</label>
+                                <textarea id="approval-notes" rows="4" placeholder="Enter reason for approval or rejection..."></textarea>
+                                <div class="error-message" id="error-approval-notes" style="margin-top: 8px;"></div>
+                            </div>
+                            <div class="action-buttons-vertical">
+                                <button class="btn btn-primary" id="btn-approval-approve"><i class="fas fa-check"></i> Approve (Send to Ops)</button>
+                                <button class="btn btn-danger" id="btn-approval-reject"><i class="fas fa-times"></i> Reject</button>
+                                <button class="btn btn-secondary" id="btn-approval-request"><i class="fas fa-comment-dots"></i> Request Info (Back to Compliance)</button>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+
+            </div>
+           
+        </main>
+    </div>
+   
+    <script src="dashboard.js" defer></script>
+    <script src="approval.js" defer></script>
+</body>
+</html>
+

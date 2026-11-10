@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="vi"> <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHRONOS - Documents</title>
+   
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://kit.fontawesome.com/4383773ea8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="overlay" id="overlay"></div>
+
+
+    <div class="page-bg" aria-hidden="true">
+        <img src="images/background.png" alt="background" class="bg-image">
+    </div>
+
+
+    <div class="dashboard-container">
+       
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <img src="images/logo_icon.png" alt="Logo Icon">
+                <span class="brand-name">CHRONOS</span>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="transaction.html"><i class="fas fa-exchange-alt"></i><span>Transactions</span></a>
+                    </li>
+                    <li class="active">
+                        <a href="document.html">
+                            <i class="fas fa-folder"></i>
+                            <span>Documents</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-logout">
+                <a href="login.html">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+
+        <main class="main-content">
+            <header class="main-header">
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <h1>Document Management</h1>
+            </header>
+
+
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="exporter-view">Pending Uploads (Exporter)</button>
+                <button class="tab-btn" data-tab="importer-view">My Repository (Importer)</button>
+            </div>
+
+
+            <div class="tab-content">
+               
+                <div id="exporter-view" class="tab-pane active">
+                   
+                    <section class="content-section">
+                        <h2>L/Cs Awaiting Documents</h2>
+                        <div class="lc-cards-container">
+                            <div class="lc-card">
+                                <div class="lc-card-header">
+                                    Letter of Credit ID: <strong>#LC-67890</strong>
+                                </div>
+                                <div class="lc-card-body">
+                                    <p><strong>Applicant:</strong> Importer A Company</p>
+                                    <p><strong>Amount:</strong> $150,000.00 USD</p>
+                                    <p><strong>Document Deadline:</strong> 15/11/2025 <i class="fas fa-clock"></i></p>
+                                </div>
+                                <div class="lc-card-footer">
+                                    <button class="btn btn-primary"><i class="fas fa-upload"></i> Upload Documents</button>
+                                </div>
+                            </div>
+                             <div class="lc-card">
+                                <div class="lc-card-header">
+                                    Letter of Credit ID: <strong>#LC-67891</strong>
+                                </div>
+                                <div class="lc-card-body">
+                                    <p><strong>Applicant:</strong> Importer B Company</p>
+                                    <p><strong>Amount:</strong> €85,000.00 EUR</p>
+                                    <p><strong>Document Deadline:</strong> 20/11/2025 <i class="fas fa-clock"></i></p>
+                                </div>
+                                <div class="lc-card-footer">
+                                    <button class="btn btn-primary"><i class="fas fa-upload"></i> Upload Documents</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                   
+                    <section class="content-section">
+                        <h2>Submission History</h2>
+                        <div class="table-container"> <table>
+                                <thead>
+                                    <tr>
+                                        <th>Date Sent</th>
+                                        <th>Transaction ID (L/C)</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>20/10/2025</td>
+                                        <td>#LC-12345</td>
+                                        <td>First document set</td>
+                                    </tr>
+                                    <tr>
+                                        <td>22/10/2025</td>
+                                        <td>#LC-12345</td>
+                                        <td>Additional B/L submission</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+
+
+                <div id="importer-view" class="tab-pane">
+                   
+                    <section class="content-section filter-section">
+                        <h2>Transaction Document Repository</h2>
+                         <form class="filter-form" id="importer-filter-form">
+                            <input type="text" placeholder="Search by Transaction ID (T/T or L/C)">
+                             <select>
+                                 <option value=""disabled selected>-- Filter by Document Type --</option>
+                                 <option value="invoice">Invoice</option>
+                                 <option value="bl">Bill of Lading</option>
+                                 <option value="packing">Packing List</option>
+                                 </select>
+                             <div class="date-filter-group">
+                                 <label for="date-from">From Date:</label>
+                                 <input type="date" id="date-from" title="From Date">
+                             </div>
+                             <div class="date-filter-group">
+                                 <label for="date-to">To Date:</label>
+                                 <input type="date" id="date-to" title="To Date">
+                             </div>
+                             <button class="btn btn-secondary" type="submit">Search</button>
+                         </form>
+                    </section>
+
+
+                    <section class="content-section">
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Date Uploaded</th>
+                                        <th>Transaction ID</th>
+                                        <th>Document Name</th>
+                                        <th>Document Type</th>
+                                        <th>Uploaded By</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>23/10/2025</td>
+                                        <td>#LC-67890</td>
+                                        <td>Bill of Lading_BL7890.pdf</td>
+                                        <td>Bill of Lading</td>
+                                        <td>ABC Exporter</td>
+                                        <td><span class="status-tag status-verified">Verified</span></td>
+                                        <td>
+                                            <button class="btn-icon" title="Download"><i class="fas fa-download"></i></button>
+                                            <button class="btn-icon" title="View"><i class="fas fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                     <tr>
+                                        <td>21/10/2025</td>
+                                        <td>#TT-89012</td>
+                                        <td>Invoice_INV123.pdf</td>
+                                        <td>Invoice</td>
+                                        <td>You</td>
+                                        <td><span class="status-tag status-pending">Pending Review</span></td>
+                                        <td>
+                                            <button class="btn-icon" title="Download"><i class="fas fa-download"></i></button>
+                                            <button class="btn-icon" title="View"><i class="fas fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+
+
+            </div> </main>
+    </div>
+   
+    <script src="dashboard.js" defer></script>
+    <script src="document.js" defer></script>
+</body>
+</html>
+

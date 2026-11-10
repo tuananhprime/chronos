@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHRONOS - Compliance Tasks</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://kit.fontawesome.com/4383773ea8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="overlay" id="overlay"></div>
+    <div class="page-bg" aria-hidden="true">
+        <img src="images/background.png" alt="background" class="bg-image">
+    </div>
+
+    <div class="dashboard-container">
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <img src="images/logo_icon.png" alt="Logo Icon">
+                <span class="brand-name">CHRONOS</span>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="bankdashboard.html">
+                            <i class="fas fa-home"></i> <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="compliance.html">
+                             <i class="fas fa-shield-alt"></i> <span>Compliance Tasks</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="approval.html">
+                            <i class="fas fa-check-circle"></i> <span>Approval Tasks</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="processing.html">
+                            <i class="fas fa-cogs"></i> <span>Processing Tasks</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="alltransaction.html">
+                             <i class="fas fa-list"></i> <span>All Transactions</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-logout">
+                <a href="login.html">
+                    <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <h1>Compliance Tasks</h1>
+            </header>
+
+            <section class="content-section filter-section">
+                <form class="filter-form" id="compliance-filter-form">
+                    <input type="text" placeholder="Search by Transaction ID / Customer Name..." id="search-input">
+                    <select id="status-filter">
+                        <option value="" selected>-- Filter by Status --</option>
+                        <option value="pending">Pending</option>
+                        <option value="approved">Approved</option>
+                        <option value="rejected">Rejected</option>
+                        <option value="request_info">Request Info</option>
+                    </select>
+                    <div class="date-filter-group">
+                        <label for="date-from">From Date:</label>
+                        <input type="date" id="date-from" title="From Date">
+                    </div>
+                    <div class="date-filter-group">
+                        <label for="date-to">To Date:</label>
+                        <input type="date" id="date-to" title="To Date">
+                    </div>
+                    <button class="btn btn-secondary" type="button" id="filter-btn">Search</button>
+                </form>
+            </section>
+
+            <section class="content-section">
+                <h2>Pending Compliance Queue</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>TRANSACTION ID</th>
+                                <th>CUSTOMER</th>
+                                <th>TYPE</th>
+                                <th>AMOUNT</th>
+                                <th>SUBMITTED DATE</th>
+                                <th>STATUS</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody id="compliance-tbody">
+                            <!-- Data sẽ load bằng JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="dashboard.js" defer></script>
+    <script src="compliance.js" defer></script>
+</body>
+</html>

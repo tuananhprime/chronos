@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHRONOS - Review L/C</title>
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://kit.fontawesome.com/4383773ea8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="overlay" id="overlay"></div>
+    <div class="page-bg" aria-hidden="true"><img src="images/background.png" alt="background" class="bg-image"></div>
+   
+    <div class="dashboard-container">
+        <aside class="sidebar" id="sidebar">
+             <div class="sidebar-logo"><img src="images/logo_icon.png" alt="Logo Icon"><span class="brand-name">CHRONOS</span></div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active"><a href="dashboard.html"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+                    <li><a href="transactions.html"><i class="fas fa-exchange-alt"></i> <span>Transactions</span></a></li>
+                    <li><a href="documents.html"><i class="fas fa-folder"></i> <span>Documents</span></a></li>
+                    <li><a href="profile.html"><i class="fas fa-user"></i> <span>Profile</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-logout"><a href="login.html"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></div>
+        </aside>
+
+
+        <main class="main-content">
+            <header class="main-header">
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu"><span></span><span></span><span></span></button>
+                <h1>Review L/C Application</h1>
+            </header>
+
+
+            <div class="form-card" id="lc-review-panel" style="max-width: 1000px; margin: 0 auto;">
+               
+                <p style="font-size: 1.1em; margin-bottom: 25px;">Vui lòng kiểm tra kỹ tất cả thông tin dưới đây trước khi gửi yêu cầu.</p>
+
+
+                <section class="form-section">
+                    <h2>Parties Involved</h2>
+                    <div class="review-list">
+                       
+                        <div class="review-row">
+                            <span class="review-label">Applicant</span>
+                            <span class="review-value" id="review-applicant">...</span>
+                        </div>
+                        <div class="review-row">
+                            <span class="review-label">Beneficiary Name</span>
+                            <span class="review-value" id="review-beneficiary-name">...</span>
+                        </div>
+                        <div class="review-row">
+                            <span class="review-label">Address</span>
+                            <span class="review-value" id="review-address">...</span>
+                        </div>
+                        <div class="review-row">
+                            <span class="review-label">Country</span>
+                            <span class="review-value" id="review-country">...</span>
+                        </div>
+                        <div class="review-row">
+                            <span class="review-label">Advising Bank</span>
+                            <span class="review-value" id="review-advising-bank">...</span>
+                        </div>
+                        <div class="review-row">
+                            <span class="review-label">SWIFT/BIC Code</span>
+                            <span class="review-value" id="review-swift-code">...</span>
+                        </div>
+                        <div class="review-row">
+                            <span class="review-label">L/C Type</span>
+                            <span class="review-value" id="review-lc-type" style="font-weight: 600;">...</span>
+                        </div>
+                    </div>
+                </section>
+
+
+                <section class="form-section">
+                    <h2>L/C Details</h2>
+                    <div class="review-list">
+                        <div class="review-row">
+                            <span class="review-label">Payment Term</span>
+                            <span class="review-value" id="review-payment-term">...</span>
+                        </div>
+                        <div class="review-row">
+                            <span class="review-label">Usance Terms</span>
+                            <span class="review-value" id="review-usance-terms">...</span>
+                        </div>
+                        <div class="review-row">
+                            <span class="review-label">Amount</span>
+                            <span class="review-value" id="review-amount" style="font-size: 1.1em; font-weight: 700; color: var(--accent, #1fb4e8);">...</span>
+                        </div>
+                        <div class="review-row">
+                            <span class="review-label">Currency</span>
+                            <span class="review-value" id="review-currency">...</span>
+                        </div>
+                        <div class="review-row">
+                            <span class="review-label">Expiry Date</span>
+                            <span class="review-value" id="review-expiry-date">...</span>
+                        </div>
+                        <div class="review-row">
+                            <span class="review-label">Place of Expiry</span>
+                            <span class="review-value" id="review-place-expiry">...</span>
+                        </div>
+                    </div>
+                </section>
+               
+                <section class="form-section">
+                    <h2>Shipment Terms & Documents</h2>
+                    <div class="review-list">
+                        <div class="review-row">
+                            <span class="review-label">Goods Description</span>
+                            <span class="review-value" id="review-goods-desc" style="text-align: right;">...</span>
+                        </div>
+                        <div class="review-row">
+                            <span class="review-label">Port of Loading</span>
+                            <span class="review-value" id="review-port-loading">...</span>
+                        </div>
+                        <div class="review-row">
+                            <span class="review-label">Port of Discharge</span>
+                            <span class="review-value" id="review-port-discharge">...</span>
+                        </div>
+                        <div class="review-row">
+                            <span class="review-label">Latest Shipment</span>
+                            <span class="review-value" id="review-latest-shipment">...</span>
+                        </div>
+                       
+                        <div class="review-row">
+                            <span class="review-label">Required Documents</span>
+                            <span class="review-value" id="review-docs-list">...</span>
+                        </div>
+                        <div class="review-row">
+                            <span class="review-label">Uploaded Files</span>
+                            <span class="review-value" id="review-files-list">...</span>
+                        </div>
+                    </div>
+                </section>
+
+
+                <div class="form-actions review-actions">
+                    <div class="actions-left">
+                        <button class="btn btn-secondary" id="back-to-edit-btn">
+                            <i class="fas fa-arrow-left"></i> Edit
+                        </button>
+                    </div>
+                    <div class="actions-right">
+                        <button class="btn btn-primary" id="submit-lc-btn">
+                            Submit Application <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+
+
+            </div>
+        </main>
+    </div>
+   
+    <script src="dashboard.js" defer></script>
+    <script src="lc.js" defer></script>
+</body>
+</html>
+

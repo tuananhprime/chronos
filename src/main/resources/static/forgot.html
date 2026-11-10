@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Forgot Password — Chronos</title>
+  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    .success-message{
+      color:#c8f7d6;
+      background-color: rgba(0,200,120,0.06);
+      border:1px solid rgba(0,200,120,0.14);
+      padding:10px;
+      border-radius:6px;
+      text-align:center;
+      margin-bottom:8px;
+      font-size:13px;
+      display:none;
+    }
+    .small-note{font-size:13px; color:#cfeffb; opacity:0.85; text-align:center; margin-top:10px;}
+    .form-row{display:flex; gap:12px; flex-direction:column;}
+  </style>
+</head>
+<body>
+  <div class="page-bg" aria-hidden="true">
+    <img src="images/background.png" alt="background" class="bg-image">
+    <div class="city-overlay"></div>
+  </div>
+
+
+  <main class="wrap">
+    <div class="login-card" role="region" aria-label="Forgot password">
+      <header class="card-header">
+        <div class="logo">
+          <img src="images/logo_icon.png" alt="Chronos logo">
+          <div class="brand">
+            <div class="brand-name">CHRONOS</div>
+            <div class="brand-sub">INTERNATIONAL PAYMENT SYSTEM</div>
+          </div>
+        </div>
+      </header>
+
+
+      <section class="card-body">
+        <h1 class="welcome">Forgot Password</h1>
+
+
+        <div id="success" class="success-message" role="status"></div>
+        <div id="error" class="error-message" role="alert"></div>
+
+
+        <form id="forgotForm" class="login-form" autocomplete="off">
+          <div class="form-row">
+            <input class="input" type="text" id="username" placeholder="Username" required>
+            <input class="input" type="email" id="email" placeholder="Email address" required>
+          </div>
+
+
+          <div class="actions" style="margin-top:8px;">
+            <button class="login-btn" type="submit" id="continueBtn">Continue to Reset</button>
+          </div>
+
+
+          <p class="signup" style="margin-top:12px; text-align:center;">
+            <a href="login.html">Back to login</a>
+          </p>
+        </form>
+      </section>
+    </div>
+  </main>
+  <script src="forgot.js"></script>
+</body>
+</html>
+

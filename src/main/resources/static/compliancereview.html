@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHRONOS - Compliance Review</title>
+   
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://kit.fontawesome.com/4383773ea8.js" crossorigin="anonymous"></script>
+   
+    <style>
+        /* CSS tùy chỉnh cho layout 2 cột của trang chi tiết */
+        .detail-layout {
+            display: flex;
+            gap: 30px;
+        }
+        .detail-main {
+            flex: 3; /* Cột chính chiếm 3 phần */
+        }
+        .detail-sidebar {
+            flex: 1.5; /* Cột phụ chiếm 1.5 phần */
+            position: sticky; /* Giữ cột action khi cuộn */
+            top: 40px;
+        }
+       
+        /* CSS cho thẻ kết quả Screening */
+        .screening-result {
+            padding: 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .screening-result.low-risk {
+            background-color: rgba(40, 167, 69, 0.15);
+            border: 1px solid rgba(40, 167, 69, 0.4);
+        }
+        .screening-result.high-risk {
+            background-color: rgba(220, 53, 69, 0.15);
+            border: 1px solid rgba(220, 53, 69, 0.4);
+        }
+        .screening-result .result-title {
+            font-size: 16px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .screening-result.low-risk .result-title { color: #28a745; }
+        .screening-result.high-risk .result-title { color: #dc3545; }
+        .screening-result .result-body {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 8px;
+        }
+       
+        /* CSS cho các nút Action */
+        .action-buttons-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        /* Style riêng cho nút Reject/Request */
+        .btn-danger {
+            background-color: rgba(220, 53, 69, 0.8);
+            color: #fff;
+        }
+        .btn-danger:hover {
+            background-color: rgba(220, 53, 69, 1);
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="overlay" id="overlay"></div>
+    <div class="page-bg" aria-hidden="true">
+        <img src="images/background.png" alt="background" class="bg-image">
+    </div>
+
+
+    <div class="dashboard-container">
+       
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <img src="images/logo_icon.png" alt="Logo Icon">
+                <span class="brand-name">CHRONOS</span>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="bankdashboard.html">
+                            <i class="fas fa-home"></i> <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="compliance.html">
+                             <i class="fas fa-shield-alt"></i> <span>Compliance Tasks</span>
+                        </a>
+                    </li>
+                    <li><a href="approval.html"><i class="fas fa-check-circle"></i> <span>Approval Tasks</span></a></li>
+                    <li><a href="processing.html"><i class="fas fa-cogs"></i> <span>Processing Tasks</span></a></li>
+                    <li><a href="all-transactions.html"><i class="fas fa-list"></i> <span>All Transactions</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-logout">
+                <a href="login.html">
+                    <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+
+        <main class="main-content">
+            <header class="main-header">
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <div>
+                    <h1>Compliance Review: #TT-89012</h1>
+                    <a href="compliance.html" style="color: var(--accent, #1fb4e8); text-decoration: none; font-weight: 500;">
+                        <i class="fas fa-arrow-left"></i> Back to Compliance Queue
+                    </a>
+                </div>
+            </header>
+
+
+            <div class="detail-layout">
+
+
+                <div class="detail-main">
+                   
+                    <div class="form-card">
+                        <section class="form-section">
+                            <h2>Transaction Overview</h2>
+                            <div class="review-list">
+                                <div class="review-row">
+                                    <span class="review-label">Transaction ID</span>
+                                    <span class="review-value">#TT-89012</span>
+                                </div>
+                                <div class="review-row">
+                                    <span class="review-label">Customer (Applicant)</span>
+                                    <span class="review-value">Doe Enterprises (Importer A)</span>
+                                </div>
+                                <div class="review-row">
+                                    <span class="review-label">Transaction Type</span>
+                                    <span class="review-value">T/T Order</span>
+                                </div>
+                                <div class="review-row">
+                                    <span class="review-label">Amount</span>
+                                    <span class="review-value" style="font-size: 1.1em; font-weight: 700; color: var(--accent, #1fb4e8);">$104,000.00 USD</span>
+                                </div>
+                                <div class="review-row">
+                                    <span class="review-label">Date Submitted</span>
+                                    <span class="review-value">25/10/2025 09:15 AM</span>
+                                </div>
+                                <div class="review-row">
+                                    <span class="review-label">Current Status</span>
+                                    <span class="review-value"><span class="status-tag status-pending">Pending Compliance</span></span>
+                                </div>
+                            </div>
+                        </section>
+
+
+                        <section class="form-section">
+                            <h2>Beneficiary Details</h2>
+                            <div class="review-list">
+                                <div class="review-row">
+                                    <span class="review-label">Beneficiary Name</span>
+                                    <span class="review-value">Singapore Electronics Ltd.</span>
+                                </div>
+                                <div class="review-row">
+                                    <span class="review-label">Country</span>
+                                    <span class="review-value">Singapore</span>
+                                </div>
+                                <div class="review-row">
+                                    <span class="review-label">Address</span>
+                                    <span class="review-value">123 Marina Bay, Singapore</span>
+                                </div>
+                                <div class="review-row">
+                                    <span class="review-label">Account Number / IBAN</span>
+                                    <span class="review-value">SG90 0000 0000 1234 5678</span>
+                                </div>
+                                <div class="review-row">
+                                    <span class="review-label">SWIFT/BIC Code</span>
+                                    <span class="review-value">DBSSSGSG</span>
+                                </div>
+                            </div>
+                        </section>
+
+
+                         <section class="form-section">
+                            <h2>Transaction Purpose</h2>
+                            <div class="review-list">
+                                <div class="review-row">
+                                    <span class="review-label">Purpose of Transfer</span>
+                                    <span class="review-value">Payment for Goods</span>
+                                </div>
+                                <div class="review-row">
+                                    <span class="review-label">Description/Notes</span>
+                                    <span class="review-value">Payment for invoice #INV-3005 (electronics components).</span>
+                                </div>
+                            </div>
+                        </section>
+
+
+                        <section class="form-section">
+                            <h2>Supporting Documents</h2>
+                            <div class="document-list" id="review-documents">
+                                <div class="doc-item">
+                                    <i class="fas fa-file-pdf" style="color: #ff5252;"></i>
+                                    <span>Invoice_INV-3005.pdf</span>
+                                    <button class="btn-icon" title="Download"><i class="fas fa-download"></i></button>
+                                </div>
+                                <div class="doc-item">
+                                    <i class="fas fa-file-pdf" style="color: #ff5252;"></i>
+                                    <span>Sales_Contract_T-89012.pdf</span>
+                                    <button class="btn-icon" title="Download"><i class="fas fa-download"></i></button>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+
+                <div class="detail-sidebar">
+                    <div class="form-card" id="compliance-action-card"> <section class="form-section">
+                       
+                        <section class="form-section">
+                            <h2>Automated Screening</h2>
+                            <div class="screening-result low-risk">
+                                <div class="result-title">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Low Risk (Passed)</span>
+                                </div>
+                                <div class="result-body">
+                                    No matches found in sanctions lists. Customer profile consistent with activity.
+                                </div>
+                            </div>
+                           
+                            </section>
+
+
+                        <section class="form-section">
+                            <h2>Compliance Action</h2>
+                            <div class="form-group">
+                                <label for="compliance-notes">Internal Notes / Reason</label>
+                                <textarea id="compliance-notes" rows="4" placeholder="Enter reason for approval, rejection, or request..."></textarea>
+                                <div class="error-message" id="error-compliance-notes" style="margin-top: 8px;"></div>
+                            </div>
+                            <div class="action-buttons-vertical">
+                                <button class="btn btn-primary" id="btn-compliance-approve"><i class="fas fa-check"></i> Approve</button>
+                                <button class="btn btn-danger" id="btn-compliance-reject"><i class="fas fa-times"></i> Reject</button>
+                                <button class="btn btn-secondary" id="btn-compliance-request"><i class="fas fa-comment-dots"></i> Request for Information</button>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+
+            </div>
+           
+        </main>
+    </div>
+   
+    <script src="dashboard.js" defer></script>
+    <script src="compliancereview.js" defer></script>
+</body>
+</html>
+

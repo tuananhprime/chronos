@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>CHRONOS - Processing Tasks</title>
+
+
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://kit.fontawesome.com/4383773ea8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="overlay" id="overlay"></div>
+    <div class="page-bg" aria-hidden="true">
+        <img src="images/background.png" alt="background" class="bg-image">
+    </div>
+
+
+
+
+    <div class="dashboard-container">
+       
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <img src="images/logo_icon.png" alt="Logo Icon">
+                <span class="brand-name">CHRONOS</span>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="bankdashboard.html">
+                            <i class="fas fa-home"></i> <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="compliance.html">
+                             <i class="fas fa-shield-alt"></i> <span>Compliance Tasks</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="approval.html">
+                            <i class="fas fa-check-circle"></i> <span>Approval Tasks</span>
+                        </a>
+                    </li>
+
+
+                    <li class="active">
+                        <a href="processing.html">
+                             <i class="fas fa-cogs"></i> <span>Processing Tasks</span>
+                        </a>
+                    </li>
+                     <li>
+                        <a href="alltransaction.html">
+                             <i class="fas fa-list"></i> <span>All Transactions</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-logout">
+                <a href="login.html">
+                    <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+
+
+
+        <main class="main-content">
+            <header class="main-header">
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <h1>Processing Tasks</h1>
+            </header>
+
+
+            <section class="content-section filter-section">
+                <form class="filter-form" id="processing-filter-form">
+                    <input type="text" placeholder="Search by Transaction ID / Customer Name...">
+                    <select>
+                        <option value="" disabled selected>-- Filter by Status --</option>
+                        <option value="pending">Pending Processing</option>
+                        <option value="processed">Processed</option>
+                        <option value="failed">Failed</option>
+                        <option value="escalated">Escalated</option>
+                    </select>
+                    <div class="date-filter-group">
+                        <label for="date-from">From Date:</label>
+                        <input type="date" id="date-from" title="From Date">
+                    </div>
+                    <div class="date-filter-group">
+                        <label for="date-to">To Date:</label>
+                        <input type="date" id="date-to" title="To Date">
+                    </div>
+                    <button class="btn btn-secondary" type="submit">Search</button>
+                </form>
+            </section>
+
+
+            <section class="content-section">
+                <h2>Pending Processing Queue</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>TRANSACTION ID</th>
+                                <th>CUSTOMER</th>
+                                <th>TYPE</th>
+                                <th>AMOUNT</th>
+                                <th>SUBMITTED DATE</th>
+                                <th>STATUS</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody id="processing-table-body">
+                            <tr>
+                                <td><strong>#TT-89012</strong></td>
+                                <td>Doe Enterprises (Importer A)</td>
+                                <td>T/T</td>
+                                <td>$104,000.00 USD</td>
+                                <td>25/10/2025 09:15 AM</td>
+                                <td>
+                                    <span class="status-tag status-pending">Pending Processing</span>
+                                </td>
+                                <td>
+                                    <a href="processingdetail.html?id=TT-89012" class="btn btn-primary" style="padding: 5px 12px; font-size: 14px;">
+                                        <i class="fas fa-cogs"></i> Process
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>#LC-67890</strong></td>
+                                <td>ABC Exporter (Exporter B)</td>
+                                <td>L/C</td>
+                                <td>$150,000.00 USD</td>
+                                <td>24/10/2025 04:30 PM</td>
+                                <td>
+                                    <span class="status-tag status-pending">Pending Processing</span>
+                                </td>
+                                <td>
+                                    <a href="processingdetail.html?id=LC-67890" class="btn btn-primary" style="padding: 5px 12px; font-size: 14px;">
+                                        <i class="fas fa-cogs"></i> Process
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>#TT-89011</strong></td>
+                                <td>Retail Goods Ltd (Importer C)</td>
+                                <td>T/T</td>
+                                <td>$5,250.00 EUR</td>
+                                <td>24/10/2025 11:10 AM</td>
+                                <td>
+                                    <span class="status-tag status-pending">Pending Processing</span>
+                                </td>
+                                <td>
+                                    <a href="processingdetail.html?id=TT-89011" class="btn btn-primary" style="padding: 5px 12px; font-size: 14px;">
+                                        <i class="fas fa-cogs"></i> Process
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+           
+        </main>
+    </div>
+
+
+    <script src="dashboard.js" defer></script>
+    <script src="processing.js" defer></script>
+</body>
+</html>
+

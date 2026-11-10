@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHRONOS - Process Transaction</title>
+   
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://kit.fontawesome.com/4383773ea8.js" crossorigin="anonymous"></script>
+   
+    <style>
+        .detail-layout {
+            display: flex;
+            gap: 30px;
+        }
+        .detail-main { flex: 3; }
+        .detail-sidebar {
+            flex: 1.5;
+            position: sticky;
+            top: 40px;
+        }
+       
+        /* ... (Copy style của .screening-result và .action-buttons-vertical từ file ...compliance-detail.html nếu cần) ... */
+        .screening-result { padding: 16px; border-radius: 10px; margin-bottom: 20px; }
+        .screening-result.low-risk { background-color: rgba(40, 167, 69, 0.15); border: 1px solid rgba(40, 167, 69, 0.4); }
+        .screening-result .result-title { font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .screening-result.low-risk .result-title { color: #28a745; }
+        .screening-result .result-body { font-size: 14px; opacity: 0.9; margin-top: 8px; }
+        .action-buttons-vertical { display: flex; flex-direction: column; gap: 12px; }
+        .btn-danger { background-color: rgba(220, 53, 69, 0.8); color: #fff; }
+        .btn-danger:hover { background-color: rgba(220, 53, 69, 1); }
+
+
+    </style>
+</head>
+<body>
+    <div class="overlay" id="overlay"></div>
+    <div class="page-bg" aria-hidden="true">
+        <img src="images/background.png" alt="background" class="bg-image">
+    </div>
+
+
+    <div class="dashboard-container">
+       
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <img src="images/logo_icon.png" alt="Logo Icon">
+                <span class="brand-name">CHRONOS</span>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="bankdashboard.html">
+                            <i class="fas fa-home"></i> <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="compliance.html">
+                             <i class="fas fa-shield-alt"></i> <span>Compliance Tasks</span>
+                        </a>
+                    </li>
+                    <li><a href="approval.html"><i class="fas fa-check-circle"></i> <span>Approval Tasks</span></a></li>
+                    <li class="active">
+                        <a href="processing.html">
+                             <i class="fas fa-cogs"></i> <span>Processing Tasks</span>
+                        </a>
+                    </li>
+                    <li><a href="alltransactions.html"><i class="fas fa-list"></i> <span>All Transactions</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-logout">
+                <a href="login.html">
+                    <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+
+        <main class="main-content">
+            <header class="main-header">
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <div>
+                    <h1>Process Transaction: #TT-89012</h1>
+                    <a href="processing.html" style="color: var(--accent, #1fb4e8); text-decoration: none; font-weight: 500;">
+                        <i class="fas fa-arrow-left"></i> Back to Processing Queue
+                    </a>
+                </div>
+            </header>
+
+
+            <div class="detail-layout">
+
+
+                <div class="detail-main">
+                   
+                    <div class="form-card">
+                        <section class="form-section">
+                            <h2>Transaction Overview</h2>
+                            <div class="review-list">
+                                <div class="review-row">
+                                    <span class="review-label">Transaction ID</span>
+                                    <span class="review-value">#TT-89012</span>
+                                </div>
+                                <div class="review-row">
+                                    <span class="review-label">Customer (Applicant)</span>
+                                    <span class="review-value">Doe Enterprises (Importer A)</span>
+                                </div>
+                                <div class="review-row">
+                                    <span class="review-label">Transaction Type</span>
+                                    <span class="review-value">T/T Order</span>
+                                </div>
+                                <div class="review-row">
+                                    <span class="review-label">Amount</span>
+                                    <span class="review-value" style="font-size: 1.1em; font-weight: 700; color: var(--accent, #1fb4e8);">$104,000.00 USD</span>
+                                </div>
+                                <div class="review-row">
+                                    <span class="review-label">Status</span>
+                                    <span class="review-value"><span class="status-tag status-pending">Pending Processing</span></span>
+                                </div>
+                            </div>
+                        </section>
+                       
+                        <section class="form-section">
+                            <h2>Review History (Traces)</h2>
+                            <div class="review-list">
+                                <div class="review-row">
+                                    <span class="review-label">Compliance</span>
+                                    <span class="review-value">Approved by compliance_user_A (26/10/2025)</span>
+                                </div>
+                                <div class="review-row">
+                                    <span class="review-label">Approval</span>
+                                    <span class="review-value">Approved by bank_user_B (27/10/2025)</span>
+                                </div>
+                            </div>
+                        </section>
+                       
+                        </div>
+                </div>
+
+
+                <div class="detail-sidebar">
+                    <div class="form-card" id="processing-action-card"> <section class="form-section">
+                            <h2>Processing Action (Ops)</h2>
+                            <p style="font-size: 14px; opacity: 0.8; margin-bottom: 15px;">
+                                Confirm that the transaction has been executed in the core banking system.
+                            </p>
+                            <div class="form-group">
+                                <label for="processing-notes">Internal Notes / Failure Reason</label>
+                                <textarea id="processing-notes" rows="4" placeholder="Enter notes, or failure reason if any..."></textarea>
+                                <div class="error-message" id="error-processing-notes" style="margin-top: 8px;"></div>
+                            </div>
+                            <div class="action-buttons-vertical">
+                                <button class="btn btn-primary" id="btn-processing-complete"><i class="fas fa-check-double"></i> Mark as Processed (Complete)</button>
+                                <button class="btn btn-danger" id="btn-processing-fail"><i class="fas fa-times-circle"></i> Mark as Failed</button>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+
+            </div>
+           
+        </main>
+    </div>
+   
+    <script src="dashboard.js" defer></script>
+    <script src="processing.js" defer></script>
+</body>
+</html>
+

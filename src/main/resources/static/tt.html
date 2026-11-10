@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>CHRONOS - Create T/T</title>
+    <link rel="stylesheet" href="dashboard.css" />
+    <script src="https://kit.fontawesome.com/4383773ea8.js" crossorigin="anonymous"></script>
+    </head>
+<body>
+  <div class="page-bg" aria-hidden="true">
+    <img src="images/background.png" alt="background" class="bg-image">
+  </div>
+
+
+  <div class="dashboard-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                 <img src="images/logo_icon.png" alt="Logo Icon">
+                <div class="brand-name">CHRONOS</div>
+            </div>
+
+
+    <nav class="sidebar-nav">
+                <ul>
+                    <li class="active"><a href="dashboard.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+                    <li><a href="transactions.html"><i class="fas fa-exchange-alt"></i><span>Transactions</span></a></li>
+                    <li><a href="documents.html"><i class="fas fa-folder"></i><span>Documents</span></a></li>
+                    <li><a href="profile.html"><i class="fas fa-user"></i><span>Profile</span></a></li>
+                </ul>
+            </nav>
+
+
+      <div class="sidebar-logout">
+                <a href="interpaychronos-login.html"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+            </div>
+             </aside>
+
+
+    <main class="main-content">
+      <header class="main-header">
+        <button id="hamburger-btn" class="hamburger-btn" aria-label="menu" style="display:none;"><span></span><span></span><span></span></button>
+        <h1>Create New T/T Order</h1>
+      </header>
+
+
+      <form id="tt-order-form" class="form-card" novalidate>
+        <h1>Create New T/T Order</h1>
+
+
+        <section class="form-section">
+          <h2>Beneficiary Details</h2>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="beneficiary-name">Beneficiary Name</label>
+              <input id="beneficiary-name" type="text" />
+              <div class="error-message" id="error-beneficiary-name"></div>
+            </div>
+            <div class="form-group">
+              <label for="country">Country</label>
+              <select id="country" required>
+                <option value="" disabled selected>-- Select Country --</option>
+                <option value="USA">United States</option>
+                <option value="SGP">Singapore</option>
+                <option value="VNM">Vietnam</option>
+              </select>
+              <div class="error-message" id="error-country"></div>
+            </div>
+
+
+            <div class="form-group">
+              <label for="address">Address</label>
+              <input id="address" type="text" />
+            </div>
+
+
+            <div class="form-group">
+              <label for="account-number">Account Number / IBAN</label>
+              <input id="account-number" type="text" />
+              <div class="error-message" id="error-account-number"></div>
+            </div>
+
+
+            <div class="form-group">
+              <label for="swift-code">SWIFT/BIC Code</label>
+              <input id="swift-code" type="text" />
+              <div class="error-message" id="error-swift-code"></div>
+            </div>
+          </div>
+        </section>
+
+
+        <section class="form-section">
+          <h2>Transaction Details</h2>
+          <div class="form-grid">
+            <div>
+              <div class="form-group">
+                <label>Fee Responsibility</label>
+                <div class="fee-toggle">
+                  <button type="button" class="fee-btn active">OUR</button>
+                  <button type="button" class="fee-btn">BEN</button>
+                  <button type="button" class="fee-btn">SHA</button>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label for="currency">Currency</label>
+                <select id="currency" required>
+                  <option value="" disabled selected>-- Select Currency --</option>
+                  <option value="USD">USD</option>
+                  <option value="EUR">EUR</option>
+                  <option value="VND">VND</option>
+                </select>
+                <div class="error-message" id="error-currency"></div>
+              </div>
+
+
+              <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="number" id="amount" placeholder="Enter amount" />
+                <div class="error-message" id="error-amount"></div>
+              </div>
+            </div>
+
+
+            <div>
+              <div class="form-group">
+                <label for="purpose">Purpose of Transfer</label>
+                <select id="purpose" required>
+                  <option value="" disabled selected>-- Select Purpose --</option>
+                  <option value="GOODS">Payment for Goods</option>
+                  <option value="SERVICES">Payment for Services</option>
+                  <option value="FAMILY">Family Support</option>
+                </select>
+                <div class="error-message" id="error-purpose"></div>
+              </div>
+
+
+              <div class="form-group">
+                <label for="description">Description/Notes</label>
+                <textarea id="description" rows="4"></textarea>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <section class="form-section">
+          <h2>Supporting Documents</h2>
+          <div class="drop-zone" id="drop-zone">
+            <i class="fas fa-upload"></i>
+            <span>Drag & drop files here or Click to upload</span>
+            <div class="file-list" id="file-list"></div>
+            <input id="file-input" type="file" multiple style="display:none;" />
+          </div>
+        </section>
+
+
+        <div class="form-actions">
+          <button type="button" id="save-draft-btn" class="btn btn-secondary">Save as Draft</button>
+          <button type="submit" class="btn btn-primary">Proceed to Review</button>
+        </div>
+      </form>
+    </main>
+  </div>
+
+
+  <div id="overlay" class="overlay" style="display:none;"></div>
+
+
+  <script src="dashboard.js" defer></script>
+  <script src="tt.js" defer></script>
+</body>
+</html>
+

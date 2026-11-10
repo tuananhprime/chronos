@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chronos — Login</title>
+ 
+  <link rel="stylesheet" href="theme.css">
+  <script src="https://kit.fontawesome.com/4383773ea8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="page-bg" aria-hidden="true">
+    <img src="images/background.png" alt="background" class="bg-image">
+    <div class="city-overlay"></div>
+  </div>
+
+  <main class="wrap">
+    <div class="login-card" role="region" aria-label="Login form">
+     
+      <header class="card-header">
+        <div class="logo">
+          <img src="images/logo_icon.png" alt="Chronos logo">
+          <div class="brand">
+            <div class="brand-name">CHRONOS</div>
+            <div class="brand-sub">INTERNATIONAL PAYMENT SYSTEM</div>
+          </div>
+        </div>
+      </header>
+      <section class="card-body">
+        <h1 class="welcome">Welcome Back</h1>
+
+
+        <div class="login-as">
+          <label>Login as:</label>
+          <div class="btn-group" role="tablist" aria-label="Login type">
+            <button class="as-btn active" id="customer-btn" type="button">Customer</button>
+            <button class="as-btn" id="bank-btn" type="button">Bank User</button>
+          </div>
+        </div>
+
+
+        <form class="login-form" id="main-login-form">
+          <input type="hidden" id="loginRole" name="role" value="customer">
+
+
+          <input class="input" type="text" placeholder="Username" required>
+          <input class="input" type="password" placeholder="Password" required>
+
+
+          <div class="meta">
+            <label class="remember" for="remember-me"><input type="checkbox" id="remember-me"> Remember me</label>
+            <a class="forgot" href="interpaychronos-forgot-password.html">Forgot password?</a>
+          </div>
+         
+          <div class="error-message" id="login-error"></div>
+
+
+          <div class="actions login-page">
+            <button class="login-btn" type="submit">LOGIN</button>
+          </div>
+
+
+          <p class="signup">Don't have in account? <a href="register.html">Sign up here</a></p>
+        </form>
+      </section>
+    </div>
+  </main>
+
+
+  <script src="jvs_login.js" defer></script>
+</body>
+</html>
+

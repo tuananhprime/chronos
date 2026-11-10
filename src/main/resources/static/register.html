@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHRONOS - Sign Up</title>
+ 
+  <link rel="stylesheet" href="theme.css">
+  <script src="https://kit.fontawesome.com/4383773ea8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="page-bg" aria-hidden="true">
+    <img src="images/background.png" alt="background" class="bg-image">
+    <div class="city-overlay"></div>
+  </div>
+
+  <main class="wrap">
+    <div class="login-card" role="region" aria-label="Sign Up form">
+
+      <header class="card-header">
+        <div class="logo">
+          <img src="images/logo_icon.png" alt="Chronos logo">
+          <div class="brand">
+            <div class="brand-name">CHRONOS</div>
+            <div class="brand-sub">INTERNATIONAL PAYMENT SYSTEM</div>
+          </div>
+        </div>
+      </header>
+
+      <section class="card-body">
+        <h1 class="welcome">Create Account</h1>
+
+        <form class="login-form" id="signupForm" novalidate>
+
+          <label for="fullname">Full Name</label>
+          <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" class="input">
+          <div id="nameError" class="error-message"></div>
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" class="input">
+          <div id="emailError" class="error-message"></div>
+
+          <label for="business">Business Name</label>
+          <input type="text" id="business" name="business" placeholder="Enter your business name" class="input">
+          <div id="businessError" class="error-message"></div>
+
+          <label for="taxid">Tax ID (optional)</label>
+          <input type="text" id="taxid" name="taxid" placeholder="Enter your tax ID" class="input">
+
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" placeholder="Enter your username" class="input">
+          <div id="usernameError" class="error-message"></div>
+
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="At least 6 characters" class="input">
+          <div id="passwordError" class="error-message"></div>
+
+          <!-- Hidden input for role, default Customer -->
+          <input type="hidden" id="role" name="role" value="Customer">
+
+          <div class="meta">
+            <label class="remember" for="agree">
+              <input type="checkbox" id="agree" name="agree">
+              I agree to the <a href="#">Terms & Conditions</a>
+            </label>
+          </div>
+          <div id="agreeError" class="error-message"></div>
+
+          <div class="actions">
+            <button type="submit" class="login-btn">SIGN UP</button>
+          </div>
+
+          <p class="signup">Already have an account? <a href="interpaychronos-login.html">Login here</a></p>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <script src="jvs-register.js" defer></script>
+</body>
+</html>

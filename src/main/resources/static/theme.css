@@ -1,0 +1,179 @@
+/* theme.css - DÙNG CHUNG CHO CẢ LOGIN VÀ SIGNUP */
+:root{
+  --accent: #1fb4e8;
+  --glass: rgba(255,255,255,0.06);
+  --card-radius: 36px;
+  --card-padding: 48px;
+}
+
+
+*{box-sizing:border-box}
+html,body{height:100%; margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial; color: #eaf6ff; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+
+
+/* full-page background */
+.page-bg{position:fixed; inset:0; z-index:-3; overflow:hidden;}
+.page-bg .bg-image{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:brightness(0.45); transform:scale(1.02);}
+.page-bg .city-overlay{position:absolute; left:0; right:0; bottom:0; height:32vh; background:linear-gradient(to top, rgba(2,22,36,0.7), transparent);}
+
+
+/* center wrapper */
+.wrap{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:40px;
+}
+
+
+/* login card (DÙNG CHUNG) */
+.login-card{
+  width:760px;
+  max-width:92vw;
+  border-radius:var(--card-radius);
+  padding:var(--card-padding);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 8px 40px rgba(3, 15, 25, 0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  position:relative;
+  overflow:hidden;
+}
+
+
+/* subtle inner stroke */
+.login-card::before{
+  content:'';
+  position:absolute;
+  inset:8px;
+  border-radius:calc(var(--card-radius) - 8px);
+  border: 1px solid rgba(255,255,255,0.04);
+  pointer-events:none;
+}
+
+
+/* --- PHẦN ĐÃ THAY ĐỔI --- */
+/* header logo (DÙNG CHUNG) */
+.card-header{display:flex; align-items:center; justify-content:center; margin-bottom:14px;}
+.logo{display:flex; align-items:center; gap:14px;}
+/* Đặt kích thước cho file icon "C" */
+.logo img{
+  width:64px;
+  height:64px;
+  object-fit:contain;
+}
+.brand-name{font-weight:700; letter-spacing:1px; font-size:22px; color:#e8faff;}
+.brand-sub{font-size:10px; opacity:0.6; margin-top:2px; text-transform:uppercase;}
+/* --- HẾT PHẦN THAY ĐỔI --- */
+
+
+/* body (DÙNG CHUNG) */
+.card-body{padding:6px 24px 10px 24px;}
+.welcome{font-size:34px; margin:18px 0; color:#eaf6ff; font-weight:600;}
+
+
+/* login-as (chỉ dùng cho Login) */
+.login-as{display:flex; align-items:center; gap:12px; margin-bottom:12px; color:#cfeffb; font-size:15px;}
+.btn-group{display:inline-flex; gap:10px; margin-left:8px;}
+.as-btn{
+  padding:8px 14px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:transparent;
+  color: #d6f4ff;
+  cursor:pointer;
+  font-weight:600;
+}
+.as-btn.active{
+  background: linear-gradient(180deg, rgba(27,157,216,0.18), rgba(15,135,200,0.12));
+  border: 1px solid rgba(95,199,230,0.6);
+  color: white;
+  text-shadow:0 1px 0 rgba(0,0,0,0.25);
+}
+
+
+/* Form styles (DÙNG CHUNG) */
+.login-form{display:flex; flex-direction:column; gap:14px; margin-top:6px;}
+
+
+.login-form > label {
+  display: block;
+  margin-bottom: -10px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #cfeffb;
+  text-align: left;
+}
+
+
+.input{height:46px; border-radius:7px; border:none; padding:0 16px; outline:none; font-size:15px; background:rgba(255,255,255,0.03); color:#dff8ff; box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);}
+
+
+.input::placeholder { color: #cfeffb; opacity: 0.6; }
+.input::-webkit-input-placeholder { color: #cfeffb; opacity: 0.6; }
+.input::-moz-placeholder { color: #cfeffb; opacity: 0.6; }
+.input:-ms-input-placeholder { color: #cfeffb; opacity: 0.6; }
+
+
+/* meta row (DÙNG CHUNG) */
+.meta{display:flex; align-items:center; justify-content:space-between; color:#bfeffb; font-size:14px; margin-top:4px;}
+.meta .remember{display:flex; align-items:center; gap:8px;}
+.meta input{accent-color: var(--accent); transform:translateY(1px)}
+
+
+/* actions (DÙNG CHUNG) */
+.actions{display:flex; justify-content:flex-end; margin-top:6px;}
+.login-btn{
+  width: 100%;
+  padding:12px 28px; border-radius:8px; border:none; cursor:pointer;
+  background: linear-gradient(180deg, #39bff0, #15a6d9);
+  color:white; font-weight:700; letter-spacing:0.6px; box-shadow: 0 4px 18px rgba(21,120,160,0.28);
+}
+.actions.login-page {
+  justify-content: flex-end;
+}
+.actions.login-page .login-btn {
+  width: auto;
+}
+
+
+/* signup link (DÙNG CHUNG) */
+.signup{color:#cfeffb; text-align:center; margin-top:12px; font-size:13px;}
+.signup a{color:var(--accent); text-decoration:none; font-weight:600;}
+
+
+/* Error message (DÙNG CHUNG) */
+.error-message {
+  color: #ff9a9a;
+  background-color: rgba(255, 0, 0, 0.1);
+  border: 1px solid #ff5252;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+  margin-top: -5px;
+  margin-bottom: -5px;
+  font-size: 13px;
+  display: none;
+}
+
+
+/* responsive tweaks */
+@media (max-width:900px){
+  .login-card{width:820px; max-width:720px;}
+}
+@media (max-width:600px){
+  :root{--card-radius:26px; --card-padding:20px;}
+  .login-card{width:94vw; padding:20px;}
+  .brand-name{font-size:18px} /* Thêm lại brand-name */
+  .welcome{font-size:24px}
+  .input{height:44px}
+  .login-btn{width:100%; padding:12px; font-size:16px}
+  .actions{justify-content:center}
+  .btn-group{transform:translateY(4px)}
+}
+
+
+/* small generic */
+a{color:inherit}

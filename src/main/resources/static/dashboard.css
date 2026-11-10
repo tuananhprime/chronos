@@ -1,0 +1,1988 @@
+/* dashboard.css - File CSS mới cho layout dashboard */
+
+
+
+
+/* Sử dụng biến màu và font từ file theme.css (nếu bạn đã link)
+  :root {
+    --accent: #1fb4e8;
+    --glass: rgba(255,255,255,0.06);
+    --card-radius: 36px;
+  }
+*/
+
+
+
+
+/* Nền trang (giống hệt theme.css) */
+.page-bg{position:fixed; inset:0; z-index:-3; overflow:hidden;}
+.page-bg .bg-image{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:brightness(0.45); transform:scale(1.02);}
+
+
+
+
+body {
+    /* Dùng font từ theme.css */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    color: #eaf6ff;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+
+/* ======================= */
+/* 1. BỐ CỤC CHÍNH (LAYOUT) */
+/* ======================= */
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+}
+
+
+
+
+.sidebar {
+    width: 260px; /* Độ rộng của sidebar */
+    background-color: #020916; /* Màu nền tối (hơi xanh) */
+    display: flex;
+    flex-direction: column; /* Xếp logo, nav, logout theo chiều dọc */
+    padding: 24px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    z-index: 2; /* Nổi lên trên ảnh nền */
+}
+
+
+
+
+.main-content {
+    flex: 1; /* Chiếm toàn bộ không gian còn lại */
+    overflow-y: auto; /* Cho phép cuộn khi nội dung dài */
+    padding: 40px;
+    z-index: 1; /* Nằm dưới sidebar nếu có đè */
+}
+
+
+
+
+/* ======================= */
+/* 2. SIDEBAR */
+/* ======================= */
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.sidebar-logo img {
+    width: 48px;
+    height: 48px;
+}
+.sidebar-logo .brand-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+}
+
+
+
+
+.sidebar-nav {
+    flex-grow: 1; /* Đẩy mục Logout xuống dưới cùng */
+}
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar-nav li {
+    margin-bottom: 8px;
+}
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: #a9c1d9; /* Màu chữ xám-xanh */
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+}
+/* Icon placeholder (thay bằng thư viện icon) */
+.sidebar-nav i { font-style: normal; width: 20px; text-align: center; }
+
+
+
+
+.sidebar-nav a:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+.sidebar-nav li.active a {
+    background-color: var(--accent, #1fb4e8); /* Dùng màu xanh chủ đạo */
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(31, 180, 232, 0.3);
+}
+
+
+
+
+.sidebar-logout a {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: #a9c1d9;
+    font-size: 16px;
+    font-weight: 500;
+}
+.sidebar-logout a:hover {
+    color: #ff5252; /* Màu đỏ khi hover logout */
+}
+
+
+
+
+/* ======================= */
+/* 3. MAIN CONTENT */
+/* ======================= */
+.main-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+
+
+
+/* Các thẻ KPI */
+.kpi-cards {
+    display: grid;
+    /* Chia làm 3 cột, mỗi cột chiếm 1 phần bằng nhau */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+}
+.kpi-card {
+    /* Đây là hiệu ứng "kính" nhưng tối hơn */
+    background-color: rgba(0, 10, 25, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 24px;
+    border-radius: 16px; /* Bo góc nhiều hơn */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+.kpi-card .kpi-title {
+    display: block;
+    font-size: 16px;
+    color: #a9c1d9; /* Màu xám-xanh */
+    margin-bottom: 8px;
+}
+.kpi-card .kpi-value {
+    display: block;
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+}
+
+
+
+
+/* Nút tác vụ nhanh */
+.quick-actions h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+}
+.action-buttons {
+    display: flex;
+    gap: 16px;
+}
+.btn {
+    padding: 14px 24px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+.btn-primary {
+    background-color: var(--accent, #1fb4e8);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(31, 180, 232, 0.3);
+}
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(31, 180, 232, 0.4);
+}
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+
+
+
+/* Bảng hoạt động */
+.recent-activities {
+    margin-top: 40px;
+    background-color: rgba(0, 10, 25, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+.recent-activities h2 {
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 16px 8px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+th {
+    color: #a9c1d9;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+td {
+    font-size: 15px;
+}
+tr:last-child td {
+    border-bottom: none;
+}
+
+
+
+
+/* Trạng thái */
+.status-pending {
+    color: #ffc107; /* Màu vàng */
+    font-weight: 600;
+}
+.status-completed {
+    color: #28a745; /* Màu xanh lá */
+    font-weight: 600;
+}
+
+
+
+
+/* ======================= */
+/* 4. FORM (Styles MỚI)    */
+/* ======================= */
+
+
+
+
+/*
+ * Thẻ "kính" bọc toàn bộ form
+ * (Giống .recent-activities)
+*/
+.form-card {
+    background-color: rgba(0, 10, 25, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 30px 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+
+
+
+.form-card h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+
+
+
+/* Các khu vực trong form */
+.form-section {
+    margin-bottom: 30px;
+}
+.form-section h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+
+
+/* Grid 2 cột cho form */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 cột bằng nhau */
+    gap: 20px 30px; /* 20px dọc, 30px ngang */
+}
+
+
+
+
+/* Mỗi ô input (label + input) */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+.form-group label {
+    font-size: 14px;
+    color: #a9c1d9; /* Màu xám-xanh */
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+
+
+
+/* * Style chung cho các ô input, select, textarea
+ * (Nền tối, chữ sáng, viền mờ)
+*/
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select,
+.form-group textarea {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+
+
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #a9c1d9;
+    opacity: 0.6;
+}
+
+
+
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--accent, #1fb4e8);
+    box-shadow: 0 0 0 3px rgba(31, 180, 232, 0.3);
+}
+
+
+
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+
+
+
+/* Nút chọn phí (OUR/BEN/SHA) */
+.fee-toggle {
+    display: flex;
+    gap: 8px;
+}
+.fee-btn {
+    flex: 1; /* Chia đều 3 nút */
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+.fee-btn:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+.fee-btn.active {
+    background-color: #fff;
+    color: #020916; /* Màu nền sidebar */
+    border-color: #fff;
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+}
+
+
+
+
+/* Khu vực kéo thả file */
+.drop-zone {
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    color: #a9c1d9;
+    background-color: rgba(255, 255, 255, 0.03);
+    position: relative;
+    cursor: pointer;
+}
+.drop-zone:hover {
+    border-color: var(--accent, #1fb4e8);
+    color: #fff;
+}
+.drop-zone i {
+    font-size: 24px;
+    margin-bottom: 10px;
+    display: block;
+}
+.drop-zone input[type="file"] {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+
+
+/* Khu vực nút bấm cuối form */
+.form-actions {
+    display: flex;
+    justify-content: flex-end; /* Căn phải */
+    gap: 12px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+
+
+/* ======================= */
+/* 6. MOBILE NAV (MỚI)     */
+/* ======================= */
+
+
+
+
+/* Nền mờ (Overlay) */
+.overlay {
+    display: none; /* Mặc định ẩn */
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 1000; /* Nằm dưới sidebar, trên nội dung */
+}
+.overlay.show {
+    display: block; /* Hiện ra khi mở menu */
+}
+
+
+
+
+/* Nút Hamburger ☰ */
+.hamburger-btn {
+    display: none; /* Ẩn trên desktop */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 15px; /* Khoảng cách với H1 */
+    z-index: 1002; /* Luôn nổi trên cùng */
+}
+.hamburger-btn span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
+
+
+
+/* Căn chỉnh header (thêm 2 dòng này) */
+.main-header {
+    display: flex;
+    align-items: center;
+}
+
+
+
+
+/* ================================== */
+/* SỬA LỖI DROPDOWN (OPTION TRẮNG) */
+/* ================================== */
+.form-group select option {
+    /* Ép chữ bên trong danh sách phải là màu đậm */
+    color: #333;
+   
+    /* Đảm bảo nền luôn là màu sáng */
+    background-color: #f5f5f5;
+}
+
+
+
+
+/* ======================= */
+/* 8. TRANG REVIEW (MỚI)   */
+/* ======================= */
+
+
+
+
+/*
+ * Danh sách tóm tắt (thay cho form grid)
+*/
+.review-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+
+
+.review-row {
+    display: flex;
+    justify-content: space-between; /* Đẩy label và value ra 2 bên */
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 15px;
+}
+
+
+
+
+.review-row:last-child {
+    border-bottom: none;
+}
+
+
+
+
+.review-label {
+    color: #a9c1d9; /* Màu xám-xanh (giống label của form) */
+    margin-right: 20px;
+}
+
+
+
+
+.review-value {
+    color: #fff;
+    font-weight: 600;
+    text-align: right;
+}
+
+
+
+
+/* Danh sách file đính kèm */
+.document-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+
+
+.doc-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 14px;
+    border-radius: 8px;
+    color: #fff;
+}
+
+
+
+
+.doc-item i {
+    font-style: normal; /* (Placeholder cho icon file) */
+}
+
+
+
+
+/* Căn chỉnh lại 3 nút bấm ở cuối */
+.form-actions.review-actions {
+    display: flex;
+    justify-content: space-between; /* Đẩy 2 cụm nút ra 2 bên */
+    align-items: center;
+}
+
+
+
+
+.actions-left {
+    display: flex;
+    gap: 12px;
+}
+
+
+
+
+/* ========================== */
+/* 9. FILE UPLOAD (MỚI)      */
+/* ========================== */
+
+
+
+
+.drop-zone {
+    /* Đảm bảo nội dung bên trong được sắp xếp */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px; /* Chiều cao tối thiểu */
+}
+
+
+
+
+.drop-zone.dragover {
+    /* Hiệu ứng khi kéo file vào */
+    border-color: var(--accent, #1fb4e8);
+    background-color: rgba(31, 180, 232, 0.1);
+}
+
+
+
+
+.drop-zone-prompt {
+    /* Phần chữ và icon ban đầu */
+    text-align: center;
+}
+
+
+
+
+.file-list {
+    margin-top: 15px;
+    width: 90%; /* Chiếm phần lớn chiều rộng drop-zone */
+    max-height: 100px; /* Giới hạn chiều cao, có cuộn */
+    overflow-y: auto;
+    text-align: left;
+}
+
+
+
+
+.file-item {
+    display: flex;
+    justify-content: space-between; /* Đẩy tên file và nút xóa ra 2 bên */
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.08);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #fff;
+}
+
+
+
+
+.file-item span {
+    /* Ngăn tên file quá dài */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 10px;
+}
+
+
+
+
+.remove-file-btn {
+    background: none;
+    border: none;
+    color: #ff7b7b; /* Màu đỏ nhạt */
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0 5px;
+}
+.remove-file-btn:hover {
+    color: #ff4b4b;
+}
+
+
+
+
+/* ========================== */
+/* 10. PROFILE PAGE (MỚI)    */
+/* ========================== */
+
+
+
+
+/* Style cho các ô input không cho sửa (read-only/disabled) */
+.readonly-input:disabled {
+    background-color: rgba(255, 255, 255, 0.03); /* Tối hơn một chút */
+    color: #a9c1d9; /* Chữ mờ hơn */
+    cursor: not-allowed; /* Con trỏ cấm */
+    border-color: rgba(255, 255, 255, 0.1); /* Viền mờ hơn */
+}
+
+
+
+
+/* ========================== */
+/* 11. DOCUMENTS PAGE (MỚI)  */
+/* ========================== */
+
+
+
+
+/* Thanh Tabs */
+.tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+
+
+.tab-btn {
+    padding: 12px 20px;
+    background: none;
+    border: none;
+    color: #a9c1d9; /* Màu chữ xám-xanh */
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+    border-bottom: 3px solid transparent; /* Đường gạch dưới ẩn */
+    transition: color 0.2s, border-color 0.2s;
+}
+
+
+
+
+.tab-btn:hover {
+    color: #fff;
+}
+
+
+
+
+.tab-btn.active {
+    color: var(--accent, #1fb4e8); /* Màu xanh chủ đạo */
+    font-weight: 600;
+    border-bottom-color: var(--accent, #1fb4e8); /* Hiện đường gạch dưới */
+}
+
+
+
+
+/* Nội dung Tab */
+.tab-content .tab-pane {
+    display: none; /* Mặc định ẩn tất cả nội dung */
+}
+
+
+
+
+.tab-content .tab-pane.active {
+    display: block; /* Chỉ hiện nội dung của tab đang active */
+}
+
+
+
+
+/* Khu vực chung */
+.content-section {
+    /* Dùng lại style của .form-card cho đồng bộ */
+    background-color: rgba(0, 10, 25, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 24px 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    margin-bottom: 30px;
+}
+.content-section h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+
+
+
+/* Tab Exporter - Thẻ L/C */
+.lc-cards-container {
+    display: grid;
+    /* Hiện 2 thẻ trên 1 hàng, tự động xuống dòng */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+
+
+
+.lc-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    overflow: hidden; /* Đảm bảo bo góc */
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+.lc-card-header {
+    background-color: rgba(255, 255, 255, 0.08);
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #a9c1d9;
+}
+.lc-card-header strong {
+    color: #fff;
+}
+
+
+
+
+.lc-card-body {
+    padding: 16px;
+    font-size: 15px;
+    line-height: 1.6;
+    flex-grow: 1; /* Đẩy footer xuống */
+}
+.lc-card-body p {
+    margin: 0 0 10px 0;
+}
+.lc-card-body strong {
+    color: #fff;
+}
+.lc-card-body i { /* Icon đồng hồ */
+    font-style: normal;
+    margin-left: 5px;
+    color: #ffc107; /* Màu vàng */
+}
+
+
+
+
+.lc-card-footer {
+    padding: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: right;
+}
+.lc-card-footer .btn i { /* Icon upload */
+    margin-right: 8px;
+    font-style: normal;
+}
+
+
+
+
+/* Tab Importer - Bộ lọc */
+.filter-section {
+    padding-bottom: 10px; /* Giảm padding dưới */
+}
+.filter-form {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép xuống dòng trên mobile */
+    gap: 15px;
+    align-items: flex-end; /* Căn các nút/input theo đáy */
+}
+.filter-form input,
+.filter-form select {
+    /* Dùng lại style của .form-group input */
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    outline: none;
+    height: 46px; /* Đồng bộ chiều cao */
+    flex-grow: 1; /* Cho phép co giãn */
+}
+.filter-form select option { /* Sửa lỗi chữ trắng */
+    color: #333;
+    background-color: #f5f5f5;
+}
+.filter-form button {
+    height: 46px;
+    padding: 0 24px; /* Chỉ cần padding ngang */
+}
+
+
+
+
+/* Bảng dữ liệu */
+.table-container {
+    overflow-x: auto; /* Thêm cuộn ngang cho bảng */
+}
+/* Nút icon trong bảng */
+.btn-icon {
+    background: none;
+    border: none;
+    color: #a9c1d9;
+    cursor: pointer;
+    font-size: 18px; /* Tăng cỡ icon */
+    padding: 5px;
+    margin-right: 5px;
+}
+.btn-icon:hover {
+    color: var(--accent, #1fb4e8);
+}
+.btn-icon i {
+    font-style: normal;
+}
+
+
+
+
+/* Thẻ trạng thái trong bảng */
+.status-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.status-tag.status-verified {
+    color: #28a745; /* Green */
+    background-color: rgba(40, 167, 69, 0.15);
+}
+.status-tag.status-pending {
+    color: #ffc107; /* Yellow */
+    background-color: rgba(255, 193, 7, 0.15);
+}
+.status-tag.status-rejected { /* Ví dụ thêm */
+    color: #dc3545; /* Red */
+    background-color: rgba(220, 53, 69, 0.15);
+}
+
+
+/* ========================== */
+/* 14. DASHBOARD ENHANCEMENTS */
+/* ========================== */
+
+
+/* 1. Style cho Icon trong Thẻ KPI */
+.kpi-card {
+    display: flex; /* Cho text và icon nằm ngang */
+    justify-content: space-between; /* Đẩy icon sang phải */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; /* Thêm transition cho hover */
+}
+
+
+.kpi-icon {
+    font-size: 3em; /* Kích thước icon lớn */
+    color: rgba(255, 255, 255, 0.2); /* Màu icon mờ */
+    transition: color 0.2s ease; /* Thêm transition cho hover */
+}
+
+
+/* 2. Hiệu ứng Hover cho Thẻ KPI */
+.kpi-card:hover {
+    background-color: rgba(0, 10, 25, 0.7); /* Nền tối hơn khi hover */
+    transform: translateY(-5px); /* Hơi nhấc thẻ lên */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); /* Đổ bóng rõ hơn */
+}
+
+
+.kpi-card:hover .kpi-icon {
+    color: var(--accent, #1fb4e8); /* Đổi màu icon khi hover */
+}
+
+
+/* 3. Làm nổi bật Số liệu KPI */
+.kpi-value {
+    color: var(--accent, #1fb4e8); /* Cho số liệu màu xanh chủ đạo */
+    text-shadow: 0 0 10px rgba(31, 180, 232, 0.3); /* Thêm hiệu ứng tỏa sáng nhẹ */
+}
+
+
+/* 4. Tinh chỉnh Bảng */
+
+
+/* Làm nổi bật Header của Bảng */
+table th {
+    background-color: rgba(255, 255, 255, 0.05); /* Nền hơi sáng hơn */
+    padding-top: 18px; /* Tăng padding */
+    padding-bottom: 18px;
+}
+
+
+/* Hiệu ứng Hover cho dòng trong Bảng */
+table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.04); /* Đổi màu nền dòng khi hover */
+}
+
+
+/* ========================== */
+/* 15. ALERT CARD STYLES (MỚI)*/
+/* ========================== */
+
+
+.alert-list {
+    gap: 20px; /* Tăng khoảng cách giữa các card */
+}
+
+
+/* Thẻ bọc ngoài mỗi alert */
+.alert-card {
+    background-color: rgba(0, 10, 25, 0.4); /* Nền tối hơn một chút */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px; /* Bo góc */
+    padding: 18px 22px; /* Thêm padding bên trong card */
+    transition: background-color 0.2s ease;
+    /* Xóa viền trái màu cũ */
+    border-left: none;
+}
+
+
+/* Thêm lại viền trái màu dựa trên class của card */
+.alert-card.high-risk {
+    border-left: 5px solid #dc3545; /* Đỏ */
+    background-color: rgba(220, 53, 69, 0.1);
+}
+.alert-card.warning {
+    border-left: 5px solid #ffc107; /* Vàng */
+    background-color: rgba(255, 193, 7, 0.1);
+}
+.alert-card.info {
+    border-left: 5px solid #17a2b8; /* Xanh dương nhạt */
+     background-color: rgba(23, 162, 184, 0.1);
+}
+
+
+.alert-card:hover {
+    background-color: rgba(0, 10, 25, 0.6); /* Đậm hơn khi hover */
+}
+
+
+/* Điều chỉnh lại alert-item bên trong */
+.alert-item {
+    /* Bỏ các style nền/viền cũ */
+    background-color: transparent;
+    border: none;
+    padding: 0; /* Bỏ padding cũ */
+    gap: 12px; /* Giảm khoảng cách giữa icon và text */
+}
+
+
+/* Giữ màu icon theo loại */
+.alert-card.high-risk .alert-item i { color: #dc3545; }
+.alert-card.warning .alert-item i { color: #ffc107; }
+.alert-card.info .alert-item i { color: #17a2b8; }
+
+
+
+
+/* Responsive cho card (không thay đổi nhiều) */
+@media (max-width: 768px) {
+     .alert-card {
+        padding: 15px 18px;
+     }
+    .alert-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    .alert-item .alert-time {
+        margin-left: 0;
+        margin-top: 5px;
+    }
+}
+
+
+/* 1. Cho phép nhóm (label + input) co giãn giống như các ô input khác */
+.filter-form .date-filter-group {
+    flex-grow: 1;
+    display: flex; /* Bật flex để căn chỉnh label và input */
+    align-items: center;
+    gap: 8px;
+   
+    /* Lấy style nền/viền/chiều cao của các input khác trong filter */
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 0 12px;
+    border-radius: 8px;
+    height: 46px; /* Đồng bộ chiều cao */
+}
+
+
+/* 2. Tắt style mặc định của input[type=date] bên trong */
+.filter-form .date-filter-group input[type="date"] {
+    flex-grow: 1; /* Cho input chiếm hết không gian còn lại */
+    background: transparent;
+    border: none;
+    padding: 0;
+    height: auto;
+    color: #fff; /* Đảm bảo chữ trắng */
+    font-size: 15px; /* Đồng bộ font-size */
+}
+
+
+/* 3. Đổi màu icon lịch sang màu trắng */
+.filter-form .date-filter-group input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+
+/* 4. Đổi màu chữ "dd/mm/yyyy" (placeholder) */
+.filter-form .date-filter-group input[type="date"]::-webkit-input-placeholder {
+    color: #a9c1d9;
+    opacity: 0.6;
+}
+
+
+/* ===== BẢN SỬA LỖI Ô CHỌN NGÀY (Form chính) - Dán vào cuối file dashboard.css ===== */
+
+
+/* 1. Thêm style (padding, height, border...) cho các ô input[type="date"] bị thiếu */
+.form-group input[type="date"] {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    line-height: 1.5; /* Giúp căn chữ "dd/mm/yyyy" vào giữa */
+}
+
+
+/* 2. Đổi màu icon lịch sang màu trắng (trên Chrome/Edge) */
+.form-group input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+
+/* ===== BẢN NÂNG CẤP CHECKBOX (Dán vào cuối file dashboard.css) ===== */
+
+
+/* 1. Style cái <label> bọc ngoài (class .remember) */
+.form-group label.remember {
+    display: flex;        /* Căn checkbox và chữ theo hàng ngang */
+    align-items: center;  /* Căn giữa theo chiều dọc */
+    gap: 10px;          /* Khoảng cách giữa checkbox và chữ */
+    cursor: pointer;
+    font-size: 15px;      /* Đồng bộ font-size */
+}
+
+
+/* 2. Style cái checkbox thật (input) bên trong */
+.form-group label.remember input[type="checkbox"] {
+    /* 3. Đổi màu viền và dấu tích thành màu xanh chủ đạo */
+    accent-color: var(--accent, #1fb4e8);
+   
+    /* 4. Tăng kích thước cho dễ bấm */
+    width: 18px;
+    height: 18px;
+}
+
+
+/* ===== GỘP TỪ transactions.css (Dán vào cuối file dashboard.css) ===== */
+
+
+/* 1. Modal (Cửa sổ pop-up) */
+.modal {
+  display: none; /* Ẩn mặc định - JS sẽ đổi thành 'display: flex' */
+  position: fixed;
+  z-index: 2000; /* Nổi trên mọi thứ */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 15, 35, 0.85); /* Lớp nền mờ */
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+
+/* 2. Nội dung Modal: Tái sử dụng style .form-card cho đồng nhất */
+.modal-content {
+  /* Dùng lại style "kính" (glass) của .form-card */
+  background-color: rgba(0, 10, 25, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 30px 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+ 
+  width: 100%;
+  max-width: 850px; /* Giới hạn chiều rộng */
+  max-height: 90vh; /* Giới hạn chiều cao */
+  overflow-y: auto; /* Cho phép cuộn nếu nội dung dài */
+  position: relative;
+}
+
+
+/* 3. Nút đóng (X) */
+.modal .close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 30px;
+  color: #a9c1d9;
+  cursor: pointer;
+  font-weight: bold;
+}
+.modal .close:hover { color: #fff; }
+
+
+/* 4. Tiêu đề Modal */
+.modal h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: var(--accent, #1fb4e8); /* Dùng màu xanh chủ đạo */
+  text-align: center;
+}
+
+
+/* 5. Tiêu đề mục con (Tái sử dụng .form-section h2) */
+.modal-section { margin-bottom: 20px; }
+.modal-section h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+/* 6. Style cho input ReadOnly bên trong Modal */
+.modal .form-grid label {
+    font-size: 14px;
+    color: #a9c1d9;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+.modal .form-grid input[readonly],
+.modal .form-grid textarea[readonly] {
+    /* Dùng lại style .readonly-input chuẩn */
+    background-color: rgba(255, 255, 255, 0.03) !important;
+    color: rgba(234, 246, 255, 0.66) !important;
+    border-color: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 15px;
+    width: 100%;
+}
+.modal .full-width { grid-column: 1 / -1; }
+
+
+/* 7. File list (Modal) */
+.modal .file-list {
+    border: 1px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    padding: 10px;
+    background-color: rgba(0, 20, 40, 0.6);
+}
+.modal .file-item a {
+    color: var(--accent, #1fb4e8); /* Dùng màu xanh chủ đạo */
+    text-decoration: none;
+    font-size: 14px;
+}
+.modal .file-item a:hover { text-decoration: underline; }
+
+
+/* 8. Thông báo không có kết quả */
+.no-valid {
+  display: none; /* Ẩn mặc định */
+  text-align: center;
+  color: #ff8080;
+  font-weight: 600;
+  margin-top: 20px;
+  padding: 15px;
+}
+
+
+/* 9. Sửa lỗi style cho View Button (do JS có thể sẽ thêm class .view-btn) */
+.view-btn {
+    /* Biến nó thành .btn-icon chuẩn */
+    background: none;
+    border: none;
+    color: #a9c1d9;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+    margin-right: 5px;
+}
+.view-btn:hover { color: var(--accent, #1fb4e8); }
+.view-btn i { font-style: normal; }
+
+
+/* 10. Sửa lỗi style cho Status (do JS có thể sẽ thêm class .Pending) */
+/* Đảm bảo chúng dùng chung màu với .status-tag */
+.status.Pending {
+    color: #ffc107; /* Vàng */
+    font-weight: 600;
+}
+.status.Completed {
+    color: #28a745; /* Xanh lá */
+    font-weight: 600;
+}
+.status.Rejected {
+    color: #dc3545; /* Đỏ */
+    font-weight: 600;
+}
+
+
+/* ================================== */
+/* 16. MY ACTIVITY TABLE STYLES (MỚI)*/
+/* ================================== */
+
+
+/* Đặt tên class khác để không bị xung đột với .status-tag */
+.action-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff; /* Chữ mặc định là trắng */
+}
+
+
+.action-tag.approved {
+    background-color: #28a745; /* Nền xanh lá */
+}
+.action-tag.rejected {
+    background-color: #dc3545; /* Nền đỏ */
+}
+.action-tag.processed {
+    background-color: #17a2b8; /* Nền xanh dương nhạt */
+}
+.action-tag.compliance-passed { /* Ví dụ thêm */
+     background-color: #ffc107; /* Nền vàng */
+     color: #333; /* Chữ đen cho dễ đọc */
+}
+
+
+/* ======================= */
+/* 7. RESPONSIVE (ĐÃ SỬA)   */
+/* ======================= */
+
+
+
+
+@media (max-width: 900px) {
+
+
+
+
+    /* 1. SỬA LẠI SIDEBAR (Quan trọng!) */
+    .sidebar {
+        /* Chuyển sang position fixed để trượt ra */
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        transform: translateX(-100%); /* Ẩn sang trái */
+        transition: transform 0.3s ease-in-out;
+        z-index: 1001; /* Nổi lên trên cùng */
+    }
+    /* Khi có class .show, nó sẽ trượt vào */
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+
+
+
+    /* 2. HIỆN NÚT HAMBURGER */
+    .hamburger-btn {
+        display: block;
+    }
+
+
+
+
+    /* 3. SỬA MAIN CONTENT */
+    .main-content {
+        padding: 20px;
+    }
+
+
+
+
+    /* 4. XẾP CHỒNG KPI */
+    .kpi-cards {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+
+
+
+    /* 5. XẾP CHỒNG FORM */
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 16px 0;
+    }
+
+
+
+
+    /* 6. TINH CHỈNH FONT */
+    .main-header h1,
+    .form-card h1 {
+        font-size: 24px;
+    }
+    .kpi-card .kpi-value {
+        font-size: 30px;
+    }
+
+
+
+
+    /* 7. XẾP CHỒNG NÚT BẤM */
+    .form-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .form-actions .btn {
+        width: 100%;
+    }
+
+
+
+
+    /* 8. SỬA LỖI TRÀN BẢNG */
+    .recent-activities {
+        overflow-x: auto;
+    }
+
+
+
+
+.tabs {
+        /* Cho phép cuộn ngang nếu không đủ chỗ */
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    .filter-form input,
+    .filter-form select,
+    .filter-form button {
+        /* Chiếm full chiều rộng trên mobile */
+        width: 100%;
+        flex-grow: 0;
+    }
+}
+
+
+/* =========================
+   ADD-ON CSS (Dán vào cuối dashboard.css)
+   - Sửa lỗi dropdown option trắng
+   - Đảm bảo overlay & hamburger hoạt động
+   - Toast styles (override an toàn)
+   ========================= */
+
+
+/* ---------- 1) Overlay hiển thị/ẩn chính xác ---------- */
+.overlay {
+  display: none;              /* mặc định ẩn */
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 1500;
+}
+.overlay.show {
+  display: block;             /* hiện khi có class .show */
+}
+
+
+/* ---------- 2) Hamburger (chỉ hiện ở mobile) ---------- */
+/* nếu đã có rule ẩn hamburger trên desktop, giữ nguyên; ở mobile hiển thị */
+@media (max-width: 900px) {
+  .hamburger-btn { display: inline-block !important; }
+}
+@media (min-width: 901px) {
+  .hamburger-btn { display: none !important; }
+}
+
+
+/* ---------- 3) Sửa lỗi dropdown option (bản ghi đè an toàn) ---------- */
+/* Một số browser/OS ép kiểu option; để tránh nền trắng gây vỡ giao diện, ta reset về inherit.
+   (Dùng !important chỉ để ghi đè quy tắc lỗi trước đó trong file cũ) */
+.form-group select,
+.form-group select:focus {
+  color: #ffffff !important;               /* chữ hiển thị trong select */
+  background-color: rgba(255,255,255,0.04) !important;
+}
+
+
+/* Reset option styling gây nền trắng (nếu trước đó đã set) */
+.form-group select option {
+  color: inherit !important;
+  background-color: transparent !important;
+}
+
+
+/* Trường hợp placeholder option (value="") muốn hiển thị mờ */
+.form-group select option[disabled][value=""] {
+  color: rgba(234,246,255,0.55) !important;
+}
+
+
+/* Nếu vẫn gặp vấn đề trên Windows Chrome, thêm rule này (ít browser hỗ trợ) */
+select::-ms-expand { display: none; } /* ẩn mũi tên mặc định trên IE/Edge (optional) */
+
+
+/* ---------- 4) Toast / Notification (ghi đè nếu cần) ---------- */
+/* Container */
+.toast-container {
+  position: fixed;
+  top: 22px;
+  right: 22px;
+  z-index: 2600;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end;
+  pointer-events: none;
+  max-width: calc(100% - 44px);
+}
+
+
+/* Card */
+.notify-card {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 320px;
+  max-width: 560px;
+  padding: 12px 18px;
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(3, 18, 25, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transform: translateY(-6px);
+  opacity: 0;
+  animation: notify-in .22s forwards ease;
+  border: 2px solid rgba(255,255,255,0.04);
+}
+
+
+/* Left circle */
+.notify-check {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: inset 0 -6px 12px rgba(0,0,0,0.25);
+}
+
+
+/* Text */
+.notify-text { display:flex; flex-direction:column; gap:4px; color:#eaf6ff; }
+.notify-title { font-weight:700; font-size:15px; line-height:1.1; }
+.notify-message { font-size:13px; line-height:1.25; opacity:0.95; max-height:3.3em; overflow:hidden; }
+
+
+/* Close button */
+.notify-close {
+  margin-left: 12px;
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.9);
+  font-size: 18px;
+  cursor: pointer;
+  opacity: 0.95;
+}
+
+
+/* Success / Error themes */
+.notify-success {
+  background: linear-gradient(180deg, rgba(9,80,52,0.32), rgba(9,80,52,0.18));
+  border: 2px solid rgba(25, 200, 120, 0.22);
+  box-shadow: 0 8px 30px rgba(2,8,10,0.5), 0 0 0 6px rgba(25,200,120,0.04);
+}
+.notify-success .notify-check {
+  background: linear-gradient(180deg,#37d27b,#15a86b);
+  color: #fff;
+  font-weight: 800;
+}
+.notify-error {
+  background: linear-gradient(180deg, rgba(80,18,18,0.28), rgba(80,18,18,0.16));
+  border: 2px solid rgba(255, 90, 90, 0.22);
+  box-shadow: 0 8px 30px rgba(20,8,8,0.5), 0 0 0 6px rgba(255,90,90,0.03);
+}
+.notify-error .notify-check {
+  background: linear-gradient(180deg,#ff7b7b,#e84b4b);
+  color: #fff;
+  font-weight: 800;
+}
+
+
+.notify-hide { animation: notify-out .22s forwards ease; }
+@keyframes notify-in { from { transform: translateY(-8px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes notify-out { from { transform: translateY(0); opacity: 1; } to { transform: translateY(-8px); opacity: 0; } }
+
+
+/* ---------- 5) Một số ghi đè nhỏ tránh vỡ layout ---------- */
+/* Đảm bảo read-only inputs trông mờ và không quá sáng */
+.readonly-input:disabled {
+  background-color: rgba(255,255,255,0.02) !important;
+  color: rgba(234,246,255,0.66) !important;
+  border-color: rgba(255,255,255,0.06) !important;
+}
+
+
+/* Table overflow trên mobile */
+.recent-activities { overflow-x: auto; }
+
+
+/* Responsive toast */
+@media (max-width: 900px) {
+  .toast-container { right: 12px; left: 12px; top: 12px; align-items: center; }
+  .notify-card { min-width: 0; width: calc(100% - 24px); max-width: none; }
+}
+
+
+/* ===== Fix: restore dark background + form look (ADD to end of dashboard.css) ===== */
+
+
+/* 1) Force dark page background (fallback nếu background.png không load) */
+body {
+  background-color: #00121a !important; /* dark fallback */
+  color: #eaf6ff !important;
+}
+
+
+/* 2) page-bg fallback: nếu bạn có background.png nó sẽ dùng, nếu không thì dùng gradient */
+.page-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  background-image: url('background.png'), linear-gradient(180deg,#00121a 0%, #001b29 100%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.45);
+  transform: scale(1.02);
+}
+
+
+/* 3) Nếu có thẻ <img class="bg-image"> mà bị xóa, above fallback vẫn hiển thị */
+
+
+/* 4) Ensure overlay is hidden by default (avoid full-screen gray cover) */
+.overlay {
+  display: none !important;
+  background: rgba(0,0,0,0.55) !important;
+}
+.overlay.show { display:block !important; }
+
+
+/* 5) Restore form-card dark glass look (important để override rule gây ra màu xám) */
+.form-card,
+.content-section,
+.recent-activities,
+.review-card {
+  background-color: rgba(0,10,25,0.55) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+  color: #eaf6ff !important;
+}
+
+
+/* 6) Headings inside form */
+.form-card h1,
+.form-section h2,
+.content-section h2,
+.review-label {
+  color: #fff !important;
+}
+
+
+/* 7) Inputs / selects / textarea readable on dark background */
+.form-group input,
+.form-group select,
+.form-group textarea,
+.readonly-input {
+  background-color: rgba(255,255,255,0.03) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  color: #fff !important;
+}
+
+
+/* Placeholder color */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(234,246,255,0.55) !important;
+}
+
+
+/* 😎 Fee toggle active style (restore blue highlight) */
+.fee-btn.active {
+  background: linear-gradient(90deg, #1fb4e8, #0ea0d8) !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 14px rgba(14,160,216,0.18) !important;
+  border-color: rgba(255,255,255,0.06) !important;
+}
+
+
+/* 9) Buttons: ensure primary & secondary visible */
+.btn-primary {
+  background: var(--accent, #1fb4e8) !important;
+  color: #fff !important;
+  box-shadow: 0 6px 18px rgba(31,180,232,0.25) !important;
+}
+.btn-secondary {
+  background: rgba(255,255,255,0.04) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+
+/* 10) Table/text inside review should be white (right column values) */
+.review-value, td, th {
+  color: #eaf6ff !important;
+}
+
+
+/* 11) If some global rule made everything semi-opaque, reset main-content opacity */
+.main-content, .dashboard-container {
+  opacity: 1 !important;
+  background: transparent !important;
+}
+
+
+/* 12) small responsive tweak */
+@media (max-width: 900px) {
+  .form-card { padding: 18px !important; border-radius: 12px !important; }
+}
+/* ===== Add-on: custom select (dark) + toast (mẫu) ===== */
+
+
+/* -------- custom select wrapper -------- */
+.custom-select-wrap {
+  position: relative;
+  width: 100%;
+  user-select: none;
+  font-size: 14px;
+}
+.custom-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 12px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #eaf6ff;
+  cursor: pointer;
+}
+.custom-select .selected-text { flex:1; text-align:left; color: #eaf6ff; }
+.custom-select .caret {
+  width: 28px; height: 28px; display:flex; align-items:center; justify-content:center;
+  border-radius:6px;
+  background: rgba(255,255,255,0.02);
+  color: rgba(234,246,255,0.9);
+}
+
+
+/* dropdown list */
+.custom-select-list {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  left: 0;
+  background: rgba(4, 20, 30, 0.95);
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.6);
+  border-radius: 10px;
+  max-height: 220px;
+  overflow: auto;
+  z-index: 2200;
+  padding: 6px;
+}
+.custom-select-item {
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #eaf6ff;
+  cursor: pointer;
+  margin: 4px 4px;
+}
+.custom-select-item:hover {
+  background: rgba(31,180,232,0.08);
+  color: #fff;
+}
+.custom-select-item.active {
+  background: linear-gradient(90deg,#1fb4e8,#0ea0d8);
+  color: #00121a;
+  font-weight:700;
+}
+
+
+/* If list is long, show subtle divider */
+.custom-select-list::-webkit-scrollbar { height:8px; width:8px; }
+.custom-select-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius:6px; }
+
+
+/* Ensure underlying <select> invisible but accessible (keeps forms working) */
+.custom-hidden-select {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+
+/* small responsive */
+@media (max-width:900px) {
+  .custom-select-list { max-height:200px; }
+}
+
+
+/* -------- Toast (same as earlier, ensure exists) -------- */
+.toast-container {
+  position: fixed;
+  top: 22px;
+  right: 22px;
+  z-index: 2600;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end;
+  pointer-events: none;
+  max-width: calc(100% - 44px);
+}
+.notify-card {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 340px;
+  max-width: 520px;
+  padding: 12px 18px;
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(3, 18, 25, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transform: translateY(-6px);
+  opacity: 0;
+  animation: notify-in .22s forwards ease;
+  border: 2px solid rgba(255,255,255,0.04);
+}
+.notify-check {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: inset 0 -6px 12px rgba(0,0,0,0.25);
+}
+.notify-text { display:flex; flex-direction:column; gap:4px; color:#eaf6ff; }
+.notify-title { font-weight:700; font-size:15px; line-height:1.1; }
+.notify-message { font-size:13px; line-height:1.25; opacity:0.95; max-height:3.3em; overflow:hidden; }
+.notify-close { margin-left: 12px; background: transparent; border: none; color: rgba(255,255,255,0.9); font-size: 18px; cursor: pointer; opacity: 0.95; }
+
+
+.notify-success {
+  background: linear-gradient(180deg, rgba(9,80,52,0.32), rgba(9,80,52,0.18));
+  border: 2px solid rgba(25, 200, 120, 0.22);
+  box-shadow: 0 8px 30px rgba(2,8,10,0.5), 0 0 0 6px rgba(25,200,120,0.04);
+}
+.notify-success .notify-check {
+  background: linear-gradient(180deg,#37d27b,#15a86b);
+  color: #fff;
+  font-weight: 800;
+}
+.notify-error {
+  background: linear-gradient(180deg, rgba(80,18,18,0.28), rgba(80,18,18,0.16));
+  border: 2px solid rgba(255, 90, 90, 0.22);
+  box-shadow: 0 8px 30px rgba(20,8,8,0.5), 0 0 0 6px rgba(255,90,90,0.03);
+}
+.notify-error .notify-check {
+  background: linear-gradient(180deg,#ff7b7b,#e84b4b);
+  color: #fff;
+  font-weight: 800;
+}
+.notify-hide { animation: notify-out .22s forwards ease; }
+@keyframes notify-in { from { transform: translateY(-8px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes notify-out { from { transform: translateY(0); opacity: 1; } to { transform: translateY(-8px); opacity: 0; } }
+
+
+/* * Áp dụng cho thanh filter ở (Transactions) và (Compliance)
+ * Buộc thanh filter phải 'nổi' lên trên các card nội dung bên dưới nó.
+ */
+.content-section.filter-section {
+    position: relative; /* Bắt buộc phải có để z-index hoạt động */
+    z-index: 10;        /* Đặt nó 'nổi' lên trên (số 10 là đủ) */
+}

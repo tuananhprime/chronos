@@ -1,0 +1,5 @@
+target/
+data/
+apache-maven-*/
+*.log
+.DS_Store
