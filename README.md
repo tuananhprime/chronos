@@ -38,3 +38,12 @@ Khách chỉ xem danh sách và biểu mẫu T/T, L/C, Profile; ô nhập, bộ 
 Gửi yêu cầu, lưu thay đổi, tải tài liệu và mở chi tiết yêu cầu đăng nhập;
 sau khi đăng nhập sẽ quay lại trang đang xem. API dữ liệu yêu cầu JWT hợp lệ.
 Nút khám phá giao diện trên trang đăng nhập xóa phiên cũ trước khi vào chế độ khách.
+
+
+## Vercel: chỉ xem giao diện
+
+Import repository với Root Directory là thư mục gốc. `vercel.json` chạy
+`node scripts/build-preview.mjs` và publish `dist/`.
+Bản Vercel chỉ chứa HTML/CSS/JavaScript và dữ liệu minh họa, không chạy
+Spring Boot hay database. Đăng nhập, đăng ký và nghiệp vụ bị khóa.
+Cờ preview được tạo riêng khi build; chạy local vẫn dùng backend bình thường.

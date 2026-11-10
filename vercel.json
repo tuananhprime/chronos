@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "node scripts/build-preview.mjs",
+  "outputDirectory": "dist",
+  "redirects": [
+    { "source": "/", "destination": "/dashboard.html", "permanent": false },
+    { "source": "/transactions.html", "destination": "/transaction.html", "permanent": false },
+    { "source": "/documents.html", "destination": "/document.html", "permanent": false }
+  ],
+  "headers": [
+    { "source": "/(.*)", "headers": [{ "key": "X-Content-Type-Options", "value": "nosniff" }] }
+  ]
+}

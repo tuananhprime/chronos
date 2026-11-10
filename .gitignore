@@ -3,3 +3,6 @@ data/
 apache-maven-*/
 *.log
 .DS_Store
+
+dist/
+.vercel/
